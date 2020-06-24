@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">SB Delivery</string>
+    <!--region menu.xml-->
+    <string name="menu_open">Открыть меню</string>
+    <string name="menu_close">Закрыть меню</string>
+    <string name="menu_main">Главная</string>
+    <string name="menu_menu">Меню</string>
+    <string name="menu_favorites">Избранное</string>
+    <string name="menu_basket">Корзина</string>
+    <string name="menu_profile">Профиль</string>
+    <string name="menu_orders">Заказы</string>
+    <string name="menu_push">Уведомления</string>
+    <string name="menu_about_app">О приложении</string>
+    <!--end region-->
+
+    <!--region dashboard-->
+    <string name="dashboard_title">Главная</string>
+    <string name="dashboard_recommended_section">Рекомендуем</string>
+    <string name="dashboard_best_section">Лучшее</string>
+    <string name="dashboard_popular_section">Популярное</string>
+    <string name="dashboard_all_items">См. все</string>
+    <!--end region-->
+</resources>

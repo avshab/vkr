@@ -1,0 +1,11 @@
+<resources>
+
+    <!-- Errors -->
+    <string name="error_unspecified_occurred">Произошла ошибка.</string>
+    <string name="error_connection_timeout">Время подключения истекло</string>
+    <string name="error_no_internet_occurred">Нет соединения с Интернетом.</string>
+    <string name="error_service_unavailable">Личный кабинет временно недоступен.</string>
+    <string name="error_please_repeat_later">Пожалуйста, повторите попытку позже.</string>
+
+    <string name="dashboard_toolbar_title">Главная</string>
+</resources>

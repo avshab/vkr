@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="color_primary">#24222C</color>
+    <color name="color_primary_dark">#24222C</color>
+    <color name="color_accent">#FF6F14</color>
+
+    <color name="color_surface">#1A1A21</color>
+    <color name="color_on_surface">#DBFFFFFF</color>
+    <color name="color_on_surface_ripple">#601A1A21</color>
+
+    <color name="error_color">#EF3131</color>
+
+    <color name="color_article_bar">#FFFFFF</color>
+    <color name="color_on_fon_bar">#FFFFFF</color>
+    <color name="color_divider">#1F000000</color>
+    <color name="color_divider2">#FC4C4C</color>
+</resources>

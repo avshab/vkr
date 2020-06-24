@@ -1,0 +1,69 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryDark">@color/color_primary</item>
+        <item name="colorAccent">@color/color_accent</item>
+        <item name="colorOnPrimary">@android:color/white</item>
+        <item name="colorSecondary">@color/color_accent</item>
+        <item name="colorOnSecondary">@android:color/white</item>
+
+        <item name="colorError">@color/error_color</item>
+        <item name="colorOnError">#FFFFFF</item>
+        <item name="colorSurface">@color/color_surface</item>
+        <item name="colorOnSurface">@color/color_accent</item>
+    </style>
+
+    <style name="AppThemeSplash" parent="AppTheme"></style>
+
+    <style name="Toolbar">
+        <item name="android:elevation">@dimen/toolbar_elevation</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+        <item name="android:background">@color/color_primary</item>
+        <item name="android:theme">@style/DeliveryToolbar</item>
+        <item name="titleTextAppearance">@style/ToolbarTextAppearance</item>
+    </style>
+
+    <style name="DeliveryToolbarsTheme" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar">
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorOnPrimary">@color/color_on_fon_bar</item>
+        <item name="colorSurface">@color/color_article_bar</item>
+        <item name="colorControlNormal">@color/color_on_fon_bar</item>
+        <item name="android:textColorHint">@color/color_primary</item>
+        <item name="android:textColorPrimary">?attr/colorOnPrimary</item>
+    </style>
+
+    <style name="DeliveryToolbar" parent="Widget.MaterialComponents.Toolbar.Primary">
+        <item name="colorControlNormal">@color/color_accent</item>
+        <item name="titleTextColor">?attr/colorOnPrimary</item>
+        <item name="contentInsetStartWithNavigation">0dp</item>
+        <item name="android:textColorSecondary">?attr/colorOnPrimary</item>
+        <item name="android:elevation">@dimen/toolbar_elevation</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+        <item name="android:background">@color/color_primary</item>
+        <item name="android:theme">@style/DeliveryToolbarsTheme</item>
+        <item name="titleTextAppearance">@style/ToolbarTextAppearance</item>
+    </style>
+
+    <style name="ToolbarTextAppearance" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+    <style name="DeliveryNavigationView" parent="Widget.Design.NavigationView">
+        <item name="itemIconTint">@color/color_accent</item>
+        <item name="itemTextColor">@color/color_on_surface</item>
+        <item name="itemBackground">@drawable/bg_list_cell_selection</item>
+        <item name="itemTextAppearance">@style/MenuTextAppearance</item>
+    </style>
+
+    <style name="MenuTextAppearance" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <dimen name="toolbar_elevation">8dp</dimen>
+</resources>

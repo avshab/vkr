@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/home_tab_summary_item"
+        android:icon="@drawable/ic_website_home"
+        android:title="@string/menu_main"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/home_tab_appointments_item"
+        android:icon="@drawable/ic_bowl_full_of_food"
+        android:title="@string/menu_menu"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/home_tab_appointment_item"
+        android:icon="@drawable/ic_heart"
+        android:title="@string/menu_favorites"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/home_tab_contacts_item"
+        android:icon="@drawable/ic_baseline_shopping_cart"
+        android:title="@string/menu_basket"
+        app:actionLayout="@layout/menu_item"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/home_tab_profile_item"
+        android:icon="@drawable/ic_profile"
+        android:title="@string/menu_profile"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/home_tab_orders_item"
+        android:icon="@drawable/ic_orders"
+        android:title="@string/menu_orders"
+        app:showAsAction="ifRoom" />
+
+
+    <item
+        android:id="@+id/home_tab_bell_item"
+        android:icon="@drawable/ic_bell"
+        android:title="@string/menu_push"
+        app:actionLayout="@layout/menu_item"
+        app:showAsAction="ifRoom" />
+</menu>

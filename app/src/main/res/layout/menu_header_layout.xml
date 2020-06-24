@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/baseLayout"
+    android:layout_width="wrap_content"
+    android:layout_height="170dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/fonView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_background" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="25dp"
+            app:layout_constraintBottom_toBottomOf="@+id/fonView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/ic_log_out" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/clientNameTextView"
+            style="@style/TextMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="4dp"
+            app:layout_constraintBottom_toTopOf="@+id/clientEmailTextView"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="Сидоров Иван"
+            android:text="Сидоров Иван"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/clientEmailTextView"
+            style="@style/TextDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/roboto_light"
+            app:layout_constraintBottom_toBottomOf="@+id/fonView"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="sidorov.ivan@mail.ru"
+            android:text="sidorov.ivan@mail.ru"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
