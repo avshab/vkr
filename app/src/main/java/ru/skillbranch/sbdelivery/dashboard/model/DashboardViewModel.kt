@@ -4,9 +4,8 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import io.reactivex.disposables.Disposable
 import ru.skillbranch.sbdelivery.common.viewModel.BaseViewModel
+import ru.skillbranch.sbdelivery.common.viewModel.ViewModelState
 import ru.skillbranch.sbdelivery.dashboard.view.builder.DashboardCellsBuilder
-import ru.skillbranch.sbdelivery.dashboard.view.cells.DashboardAdCell
-import ru.skillbranch.sbdelivery.dashboard.view.cells.HorizontalDishesRVCell
 import ru.skillbranch.sbdelivery.domain.dashboard.model.DashboardModel
 import ru.skillbranch.sbdelivery.domain.dashboard.usecases.GetDashboardModelUseCases
 import ru.skillbranch.sbdelivery.utils.livedata.asLiveData
@@ -24,20 +23,18 @@ class DashboardViewModel(
 
     private var dataDisposable: Disposable? = null
 
-    private val cellsStateMutableLiveData = MutableLiveData<DashboardState>()
-    val cellsStateLiveData = cellsStateMutableLiveData.asLiveData
-
+    private val stateMutableLiveData = MutableLiveData<ViewModelState>()
+    val stateLiveData = stateMutableLiveData.asLiveData
 
     init {
         loadData()
-        cellsStateMutableLiveData
     }
 
     fun loadData() {
         Log.i("--TAG", "LOAD RECOMMENDATION LIST")
         getDashboardModelUseCases.buildSingle().subscribeOn(schedulers.io())
             .observeOn(schedulers.ui())
-            .doOnSubscribe { cellsStateMutableLiveData.value = DashboardState.Loading }
+            .doOnSubscribe { stateMutableLiveData.value = ViewModelState.Loading }
             .subscribe(::handleResult)
             .untilCleared()
     }
@@ -50,6 +47,6 @@ class DashboardViewModel(
         data.dishes.forEach {
             Log.i("--TAG", "dishes id --- ${it.id} name: ${it.name}")
         }
-        cellsStateMutableLiveData.value = DashboardState.Success(cellsBuilder.build(data))
+        stateMutableLiveData.value = ViewModelState.Success(cellsBuilder.build(data))
     }
 }

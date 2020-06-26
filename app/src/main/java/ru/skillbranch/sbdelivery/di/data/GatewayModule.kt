@@ -2,10 +2,13 @@ package ru.skillbranch.sbdelivery.di.data
 
 import dagger.Module
 import dagger.Provides
+import ru.skillbranch.sbdelivery.data.auth.api.AuthApiService
+import ru.skillbranch.sbdelivery.data.auth.gateways.AuthGatewayImpl
 import ru.skillbranch.sbdelivery.data.dashboard.api.DashboardApiService
 import ru.skillbranch.sbdelivery.data.dashboard.gateways.DashboardGatewayImpl
 import ru.skillbranch.sbdelivery.data.dashboard.mappers.DishesListResponseMapper
 import ru.skillbranch.sbdelivery.data.dashboard.mappers.IdsResponseMapper
+import ru.skillbranch.sbdelivery.domain.auth.login.AuthGateway
 import ru.skillbranch.sbdelivery.domain.dashboard.gateways.DashboardGateway
 
 /**
@@ -25,4 +28,9 @@ class GatewayModule {
         dishesMapper = dishesMapper,
         idsMapper = idsMapper
     )
+
+    @Provides
+    fun provideAuthGateway(
+        apiService: AuthApiService
+    ): AuthGateway = AuthGatewayImpl(authApiService = apiService)
 }

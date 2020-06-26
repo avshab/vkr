@@ -1,5 +1,16 @@
 <resources>
     <string name="app_name">SB Delivery</string>
+
+    <!--region login-->
+    <string name="login_email_hint">E-mail</string>
+    <string name="login_password_hint">Пароль</string>
+    <string name="login_title">Вход</string>
+    <string name="login_enter">Войти</string>
+    <string name="login_registration">Регистрация</string>
+    <string name="login_recover">Забыли пароль?</string>
+    <!--end region-->
+
+
     <!--region menu.xml-->
     <string name="menu_open">Открыть меню</string>
     <string name="menu_close">Закрыть меню</string>

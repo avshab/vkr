@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="HintTextAppearance" parent="TextAppearance.Design.Hint">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="OutlinedInputLayoutTheme" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="colorPrimary">@color/white</item>
+    </style>
+
+    <style name="EditTextBaseTheme">
+        <item name="android:colorControlNormal">#7A858D</item>
+        <item name="android:colorControlActivated">@color/color_accent</item>
+    </style>
+
+    <style name="OutlinedInputLayout" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxCornerRadiusBottomEnd">6dp</item>
+        <item name="boxCornerRadiusBottomStart">6dp</item>
+        <item name="boxCornerRadiusTopEnd">6dp</item>
+        <item name="boxCornerRadiusTopStart">6dp</item>
+        <item name="android:contentInsetStart">6dp</item>
+        <item name="android:contentInsetEnd">6dp</item>
+        <item name="android:layout_marginEnd">16dp</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="hintTextColor">@color/color_divider</item>
+        <item name="android:textColorHint">@color/color_divider</item>
+        <item name="hintTextAppearance">@style/HintTextAppearance</item>
+        <item name="android:theme">@style/OutlinedInputLayoutTheme</item>
+    </style>
+
+    <style name="EditTextOneLineInput">
+        <item name="boxCornerRadiusBottomEnd">6dp</item>
+        <item name="boxCornerRadiusBottomStart">6dp</item>
+        <item name="boxCornerRadiusTopEnd">6dp</item>
+        <item name="boxCornerRadiusTopStart">6dp</item>
+        <item name="android:theme">@style/EditTextBaseTheme</item>
+        <item name="android:background">@color/white</item>
+        <item name="background">@color/white</item>
+    </style>
+</resources>

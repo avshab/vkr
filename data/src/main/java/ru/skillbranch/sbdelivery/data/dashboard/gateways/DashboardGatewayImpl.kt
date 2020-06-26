@@ -30,6 +30,6 @@ class DashboardGatewayImpl(
     }
 
     override fun getRecommendedDishesIds(): Single<List<IDS>> {
-        return apiService.getRecommend().map { it.defaultIfNull }
+        return Single.just(listOf("13","23","24423","342"))//apiService.getRecommend().map { it.defaultIfNull }
     }
 }

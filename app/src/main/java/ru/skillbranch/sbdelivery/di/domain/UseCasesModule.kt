@@ -2,6 +2,8 @@ package ru.skillbranch.sbdelivery.di.domain
 
 import dagger.Module
 import dagger.Provides
+import ru.skillbranch.sbdelivery.domain.auth.login.AuthGateway
+import ru.skillbranch.sbdelivery.domain.auth.login.LoginUseCases
 import ru.skillbranch.sbdelivery.domain.dashboard.gateways.DashboardGateway
 import ru.skillbranch.sbdelivery.domain.dashboard.usecases.GetDashboardModelUseCases
 
@@ -16,4 +18,6 @@ class UseCasesModule {
     fun provideGetDashboardModelUseCases(dashboardGateway: DashboardGateway) =
         GetDashboardModelUseCases(dashboardGateway = dashboardGateway)
 
+    @Provides
+    fun provideLoginUseCases(authGateway: AuthGateway) = LoginUseCases(gateway = authGateway)
 }

@@ -1,7 +1,6 @@
 package ru.skillbranch.sbdelivery.data.dashboard.api
 
 import io.reactivex.Single
-import retrofit2.Response
 import retrofit2.http.GET
 import ru.skillbranch.sbdelivery.domain.dashboard.model.DishModel
 import ru.skillbranch.sbdelivery.domain.dashboard.model.IDS
