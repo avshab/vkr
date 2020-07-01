@@ -60,7 +60,6 @@ dependencies {
     implementation(Room.RUNTIME)
     kapt(Room.COMPILER)
     implementation(Room.RX_EXTENSIONS)
-  //  implementation(Room.SAFE_EXTENSIONS)
 
     // Retrofit.
     implementation(Retrofit.LIBRARY)

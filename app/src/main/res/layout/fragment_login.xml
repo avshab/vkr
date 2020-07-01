@@ -18,17 +18,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/emailInputEditText"
             style="@style/EditTextOneLineInput"
             android:layout_width="match_parent"
-            android:layout_height="44dp"
-            android:background="@color/white"
-            android:digits="1234567890+-() "
+            android:layout_height="wrap_content"
             android:imeOptions="actionNext|flagNoExtractUi"
-            android:inputType="number" />
+            android:inputType="textEmailAddress" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -64,30 +63,28 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="45dp"
         android:text="@string/login_enter"
-        app:layout_constraintBottom_toTopOf="@+id/appCompatButton2"
+        app:layout_constraintBottom_toTopOf="@+id/registrationButton"
         app:layout_constraintEnd_toEndOf="@+id/passwordInputLayout"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/passwordInputLayout"
         app:layout_constraintTop_toBottomOf="@+id/passwordInputLayout" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/appCompatButton2"
+        android:id="@+id/registrationButton"
         style="@style/ButtonTransparent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="@string/login_registration"
-        app:layout_constraintBottom_toTopOf="@+id/appCompatButton3"
+        app:layout_constraintBottom_toTopOf="@+id/passwordRecoveryButton"
         app:layout_constraintEnd_toEndOf="@+id/loginButton"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/loginButton"
         app:layout_constraintTop_toBottomOf="@+id/loginButton" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/appCompatButton3"
+        android:id="@+id/passwordRecoveryButton"
         style="@style/ButtonTransparentSecond"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:text="@string/login_recover"
         app:layout_constraintBottom_toBottomOf="parent"

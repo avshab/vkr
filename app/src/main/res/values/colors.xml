@@ -11,6 +11,7 @@
     <color name="error_color">#EF3131</color>
 
     <color name="white">#FFFFFF</color>
+    <color name="transparent">#00FFFFFF</color>
     <color name="color_divider">#1F000000</color>
     <color name="color_divider2">#FC4C4C</color>
     

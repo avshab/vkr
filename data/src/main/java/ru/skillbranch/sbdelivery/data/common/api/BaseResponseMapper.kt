@@ -1,4 +1,4 @@
-package ru.skillbranch.sbdelivery.data.common
+package ru.skillbranch.sbdelivery.data.common.api
 
 import retrofit2.Response
 import ru.skillbranch.sbdelivery.utils.exceptions.defaultIfNull

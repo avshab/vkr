@@ -30,5 +30,10 @@
         <item name="android:textColor">#A6A6B2</item>
     </style>
 
+    <style name="TextInput" parent="TextBody">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#1A1A21</item>
+        <item name="android:fontFamily">@font/roboto</item>
 
+    </style>
 </resources>

@@ -13,7 +13,7 @@ class LoginViewModel(private val schedulers: Schedulers, private val loginUseCas
 
     init {
 
-        loginUseCases.build(email = "some.email@example.com", password = "SomePassword123")
+        loginUseCases.build(email = "rad@yandex.com", password = "Test12345")
             .subscribeOn(schedulers.io()).observeOn(schedulers.ui()).subscribe( {
                 Log.i("--TAG", it.toString())
             }, {

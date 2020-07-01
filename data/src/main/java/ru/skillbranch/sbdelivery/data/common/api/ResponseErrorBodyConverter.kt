@@ -1,4 +1,4 @@
-package ru.skillbranch.sbdelivery.data.common
+package ru.skillbranch.sbdelivery.data.common.api
 
 import okhttp3.ResponseBody
 import retrofit2.Retrofit
@@ -25,7 +25,7 @@ class ResponseErrorBodyConverter(
 
     fun getErrorBodyFromResponseBody(responseBody: BaseResponseBody): BaseErrorResponseBody {
         return BaseErrorResponseBody(
-           // apiVersion = responseBody.apiVersion,
+            // apiVersion = responseBody.apiVersion,
             errorCode = responseBody.errorCode,
             errorMessage = responseBody.message
         )

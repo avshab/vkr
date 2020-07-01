@@ -7,7 +7,7 @@ import io.reactivex.Single
  */
 class LoginUseCases(private val gateway: AuthGateway) {
 
-    fun build(email: String, password: String): Single<Any> {
+    fun build(email: String, password: String): Single<LoginModel> {
         return gateway.login(email = email, password = password)
     }
 }

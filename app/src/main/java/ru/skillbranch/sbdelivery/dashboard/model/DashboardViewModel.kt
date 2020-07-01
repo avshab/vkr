@@ -6,6 +6,7 @@ import io.reactivex.disposables.Disposable
 import ru.skillbranch.sbdelivery.common.viewModel.BaseViewModel
 import ru.skillbranch.sbdelivery.common.viewModel.ViewModelState
 import ru.skillbranch.sbdelivery.dashboard.view.builder.DashboardCellsBuilder
+import ru.skillbranch.sbdelivery.domain.auth.login.IsUserAuthorizedUseCase
 import ru.skillbranch.sbdelivery.domain.dashboard.model.DashboardModel
 import ru.skillbranch.sbdelivery.domain.dashboard.usecases.GetDashboardModelUseCases
 import ru.skillbranch.sbdelivery.utils.livedata.asLiveData
@@ -32,7 +33,8 @@ class DashboardViewModel(
 
     fun loadData() {
         Log.i("--TAG", "LOAD RECOMMENDATION LIST")
-        getDashboardModelUseCases.buildSingle().subscribeOn(schedulers.io())
+        dataDisposable?.dispose()
+        dataDisposable = getDashboardModelUseCases.buildSingle().subscribeOn(schedulers.io())
             .observeOn(schedulers.ui())
             .doOnSubscribe { stateMutableLiveData.value = ViewModelState.Loading }
             .subscribe(::handleResult)

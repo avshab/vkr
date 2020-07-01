@@ -1,4 +1,4 @@
-package ru.skillbranch.sbdelivery.data.common
+package ru.skillbranch.sbdelivery.data.common.api
 
 import com.google.gson.annotations.SerializedName
 

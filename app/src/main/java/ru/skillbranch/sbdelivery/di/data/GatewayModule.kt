@@ -3,6 +3,7 @@ package ru.skillbranch.sbdelivery.di.data
 import dagger.Module
 import dagger.Provides
 import ru.skillbranch.sbdelivery.data.auth.api.AuthApiService
+import ru.skillbranch.sbdelivery.data.auth.api.model.UserAuthStorage
 import ru.skillbranch.sbdelivery.data.auth.gateways.AuthGatewayImpl
 import ru.skillbranch.sbdelivery.data.dashboard.api.DashboardApiService
 import ru.skillbranch.sbdelivery.data.dashboard.gateways.DashboardGatewayImpl
@@ -31,6 +32,7 @@ class GatewayModule {
 
     @Provides
     fun provideAuthGateway(
-        apiService: AuthApiService
-    ): AuthGateway = AuthGatewayImpl(authApiService = apiService)
+        apiService: AuthApiService,
+        userAuthStorage: UserAuthStorage
+    ): AuthGateway = AuthGatewayImpl(authApiService = apiService, userAuthStorage = userAuthStorage)
 }

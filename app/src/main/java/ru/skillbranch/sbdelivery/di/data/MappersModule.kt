@@ -2,7 +2,7 @@ package ru.skillbranch.sbdelivery.di.data
 
 import dagger.Module
 import dagger.Provides
-import ru.skillbranch.sbdelivery.data.common.ResponseErrorBodyConverter
+import ru.skillbranch.sbdelivery.data.common.api.ResponseErrorBodyConverter
 import ru.skillbranch.sbdelivery.data.dashboard.mappers.DishesListResponseMapper
 import ru.skillbranch.sbdelivery.data.dashboard.mappers.IdsResponseMapper
 

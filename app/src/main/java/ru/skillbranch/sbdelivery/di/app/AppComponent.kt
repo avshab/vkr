@@ -6,10 +6,7 @@ import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
 import ru.skillbranch.sbdelivery.SBDeliveryApp
 import ru.skillbranch.sbdelivery.dashboard.di.DashboardModule
-import ru.skillbranch.sbdelivery.di.data.ApiServicesModule
-import ru.skillbranch.sbdelivery.di.data.GatewayModule
-import ru.skillbranch.sbdelivery.di.data.MappersModule
-import ru.skillbranch.sbdelivery.di.data.NetworkModule
+import ru.skillbranch.sbdelivery.di.data.*
 import ru.skillbranch.sbdelivery.di.domain.UseCasesModule
 import ru.skillbranch.sbdelivery.di.utils.UtilsModule
 
@@ -27,6 +24,8 @@ import ru.skillbranch.sbdelivery.di.utils.UtilsModule
         MappersModule::class,
         GatewayModule::class,
         UseCasesModule::class,
+        StorageModule::class,
+        DataModule::class,
         SubcomponentsModule::class,
         AndroidSupportInjectionModule::class
     ]

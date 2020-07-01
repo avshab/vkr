@@ -12,6 +12,8 @@
     <style name="EditTextBaseTheme">
         <item name="android:colorControlNormal">#7A858D</item>
         <item name="android:colorControlActivated">@color/color_accent</item>
+        <item name="android:textAppearance">@style/TextInput</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
     </style>
 
     <style name="OutlinedInputLayout" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -21,21 +23,24 @@
         <item name="boxCornerRadiusTopStart">6dp</item>
         <item name="android:contentInsetStart">6dp</item>
         <item name="android:contentInsetEnd">6dp</item>
-        <item name="android:layout_marginEnd">16dp</item>
-        <item name="android:layout_marginStart">16dp</item>
-        <item name="hintTextColor">@color/color_divider</item>
-        <item name="android:textColorHint">@color/color_divider</item>
+        <item name="android:layout_marginEnd">8dp</item>
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="hintTextColor">#B3BFCF</item>
+        <item name="android:textColorHint">#B3BFCF</item>
         <item name="hintTextAppearance">@style/HintTextAppearance</item>
         <item name="android:theme">@style/OutlinedInputLayoutTheme</item>
     </style>
 
     <style name="EditTextOneLineInput">
+        <item name="android:layout_marginEnd">8dp</item>
+        <item name="android:layout_marginStart">8dp</item>
         <item name="boxCornerRadiusBottomEnd">6dp</item>
         <item name="boxCornerRadiusBottomStart">6dp</item>
         <item name="boxCornerRadiusTopEnd">6dp</item>
         <item name="boxCornerRadiusTopStart">6dp</item>
         <item name="android:theme">@style/EditTextBaseTheme</item>
-        <item name="android:background">@color/white</item>
-        <item name="background">@color/white</item>
+        <item name="android:background">@drawable/bg_input_text_field</item>
+
+        <item name="android:paddingTop">40dp</item>
     </style>
 </resources>

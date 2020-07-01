@@ -1,7 +1,7 @@
 package ru.skillbranch.sbdelivery.data.dashboard.mappers
 
-import ru.skillbranch.sbdelivery.data.common.BaseResponseMapper
-import ru.skillbranch.sbdelivery.data.common.ResponseErrorBodyConverter
+import ru.skillbranch.sbdelivery.data.common.api.BaseResponseMapper
+import ru.skillbranch.sbdelivery.data.common.api.ResponseErrorBodyConverter
 import ru.skillbranch.sbdelivery.data.dashboard.api.DishesListResponseBody
 import ru.skillbranch.sbdelivery.data.dashboard.api.RecommendedDishesResponseBody
 import ru.skillbranch.sbdelivery.domain.dashboard.model.DishModel

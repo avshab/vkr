@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName
 import io.reactivex.Single
 import retrofit2.http.Body
 import retrofit2.http.POST
+import ru.skillbranch.sbdelivery.data.auth.api.model.LoginResultResponseBody
 
 /**
  * Created by Anna Shabaeva on 26.06.2020
@@ -14,7 +15,7 @@ interface AuthApiService {
     @POST("auth/login")
     fun login(
         @Body body: LoginRequestBody
-    ): Single<Any>
+    ): Single<LoginResultResponseBody>
 
 }
 

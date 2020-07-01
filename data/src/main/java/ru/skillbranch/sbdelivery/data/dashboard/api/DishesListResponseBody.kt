@@ -1,7 +1,7 @@
 package ru.skillbranch.sbdelivery.data.dashboard.api
 
 import com.google.gson.annotations.SerializedName
-import ru.skillbranch.sbdelivery.data.common.BaseResponseBody
+import ru.skillbranch.sbdelivery.data.common.api.BaseResponseBody
 import ru.skillbranch.sbdelivery.domain.dashboard.model.IDS
 
 /**

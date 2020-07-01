@@ -7,6 +7,10 @@ import io.reactivex.Single
  */
 interface AuthGateway {
 
-    fun login(email: String, password: String): Single<Any>
+    fun login(email: String, password: String): Single<LoginModel>
+
+    fun getUserAuth(): Single<LoginModel>
+
+    fun isUserAuthorized(): Single<Boolean>
 
 }

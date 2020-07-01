@@ -3,9 +3,11 @@ package ru.skillbranch.sbdelivery.dashboard.di
 import dagger.Module
 import dagger.Provides
 import ru.skillbranch.sbdelivery.dashboard.model.DashboardViewModel
+import ru.skillbranch.sbdelivery.dashboard.view.DashboardArguments
 import ru.skillbranch.sbdelivery.dashboard.view.DashboardFragment
 import ru.skillbranch.sbdelivery.dashboard.view.builder.DashboardCellsBuilder
 import ru.skillbranch.sbdelivery.domain.dashboard.usecases.GetDashboardModelUseCases
+import ru.skillbranch.sbdelivery.utils.extensions.getArgs
 import ru.skillbranch.sbdelivery.utils.resources.ResourcesManager
 import ru.skillbranch.sbdelivery.utils.rx.Schedulers
 import ru.skillbranch.sbdelivery.utils.viewModel.createViewModel
@@ -17,6 +19,14 @@ import javax.inject.Provider
 
 @Module
 class DashboardModule {
+
+    @Provides
+    @DashboardScope
+    fun provideDashboardArguments(
+        fragment: DashboardFragment
+    ): DashboardArguments {
+        return fragment.getArgs<DashboardArguments> { fragment.arguments }.value
+    }
 
     @Provides
     @DashboardScope

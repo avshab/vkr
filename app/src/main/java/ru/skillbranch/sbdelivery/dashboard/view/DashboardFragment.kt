@@ -1,14 +1,17 @@
 package ru.skillbranch.sbdelivery.dashboard.view
 
 import android.os.Bundle
+import android.os.Parcelable
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.android.parcel.Parcelize
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import ru.skillbranch.sbdelivery.R
 import ru.skillbranch.sbdelivery.common.view.BaseFragment
 import ru.skillbranch.sbdelivery.common.viewModel.ViewModelState
 import ru.skillbranch.sbdelivery.dashboard.model.DashboardViewModel
 import ru.skillbranch.sbdelivery.dashboard.view.adapter.DashboardAdapter
+import ru.skillbranch.sbdelivery.utils.extensions.arguments
 import javax.inject.Inject
 
 /**
@@ -23,6 +26,8 @@ class DashboardFragment : BaseFragment() {
 
     private lateinit var dashboardAdapter: DashboardAdapter
 
+    private val dashboardArguments by arguments<DashboardArguments>()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         dashboardAdapter = DashboardAdapter()
@@ -31,7 +36,7 @@ class DashboardFragment : BaseFragment() {
             layoutManager = LinearLayoutManager(context)
         }
 
-        if(true) {
+        if(!dashboardArguments.hasAuth) {
             navController.navigate(R.id.action_dashboardFragment_to_loginFragment)
         }
     }
@@ -50,3 +55,8 @@ class DashboardFragment : BaseFragment() {
     }
 
 }
+
+@Parcelize
+class DashboardArguments(
+    val hasAuth: Boolean
+): Parcelable
