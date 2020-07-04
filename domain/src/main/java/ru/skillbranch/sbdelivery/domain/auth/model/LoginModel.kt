@@ -1,9 +1,6 @@
-package ru.skillbranch.sbdelivery.data.auth.api.model
+package ru.skillbranch.sbdelivery.domain.auth.model
 
-/**
- * Created by Anna Shabaeva on 28.06.2020
- */
-class LoginResultResponseBody(
+data class LoginModel(
     val id: String,
     val firstName: String,
     val lastName: String,

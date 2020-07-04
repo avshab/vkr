@@ -12,38 +12,33 @@
         tools:layout="@layout/fragment_launch">
 
         <action
-            android:id="@+id/action_launch_to_authorizedNavigation"
-            app:destination="@id/authorizedNavigation"
+            android:id="@+id/action_launch_to_dashboardFragment"
+            app:destination="@id/dashboardFragment"
             app:enterAnim="@anim/anim_navigation_fade_enter"
             app:exitAnim="@anim/anim_navigation_fade_exit"
             app:popUpTo="@id/launchFragment"
             app:popUpToInclusive="true" />
-
     </fragment>
 
-    <navigation
-        android:id="@+id/authorizedNavigation"
-        android:label="Authorized Graph"
-        app:startDestination="@id/dashboardFragment">
-        <fragment
-            android:id="@+id/dashboardFragment"
-            android:name="ru.skillbranch.sbdelivery.dashboard.view.DashboardFragment"
-            android:label="DashboardFragment"
-            tools:layout="@layout/fragment_dashboard" >
-            <action
-                android:id="@+id/action_dashboardFragment_to_loginFragment"
-                app:destination="@id/loginFragment" />
-        </fragment>
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="ru.skillbranch.sbdelivery.dashboard.view.DashboardFragment"
+        android:label="DashboardFragment"
+        tools:layout="@layout/fragment_dashboard">
+        <action
+            android:id="@+id/action_dashboardFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
 
-        <fragment
-            android:id="@+id/menuFragment"
-            android:name="ru.skillbranch.sbdelivery.menu.view.MenuFragment"
-            android:label="MenuFragment"
-            tools:layout="@layout/fragment_menu" />
-        <fragment
-            android:id="@+id/loginFragment"
-            android:name="ru.skillbranch.sbdelivery.auth.login.view.LoginFragment"
-            android:label="LoginFragment"
-            tools:layout="@layout/fragment_login" />
-    </navigation>
+    <fragment
+        android:id="@+id/menuFragment"
+        android:name="ru.skillbranch.sbdelivery.menu.view.MenuFragment"
+        android:label="MenuFragment"
+        tools:layout="@layout/fragment_menu" />
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="ru.skillbranch.sbdelivery.auth.login.view.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login" />
 </navigation>

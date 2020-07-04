@@ -34,6 +34,8 @@ android {
 
 dependencies {
 
+    implementation(project(":utils"))
+
     // "libs" directory.
     implementation(
         fileTree(

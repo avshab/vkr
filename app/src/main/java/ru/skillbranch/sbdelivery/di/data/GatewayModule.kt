@@ -3,14 +3,21 @@ package ru.skillbranch.sbdelivery.di.data
 import dagger.Module
 import dagger.Provides
 import ru.skillbranch.sbdelivery.data.auth.api.AuthApiService
-import ru.skillbranch.sbdelivery.data.auth.api.model.UserAuthStorage
-import ru.skillbranch.sbdelivery.data.auth.gateways.AuthGatewayImpl
+import ru.skillbranch.sbdelivery.data.auth.storage.UserAuthStorage
+import ru.skillbranch.sbdelivery.data.auth.gateways.LoginGatewayImpl
+import ru.skillbranch.sbdelivery.data.auth.gateways.LogoutGatewayImpl
+import ru.skillbranch.sbdelivery.data.common.userData.UserDataStorage
 import ru.skillbranch.sbdelivery.data.dashboard.api.DashboardApiService
 import ru.skillbranch.sbdelivery.data.dashboard.gateways.DashboardGatewayImpl
 import ru.skillbranch.sbdelivery.data.dashboard.mappers.DishesListResponseMapper
 import ru.skillbranch.sbdelivery.data.dashboard.mappers.IdsResponseMapper
-import ru.skillbranch.sbdelivery.domain.auth.login.AuthGateway
+import ru.skillbranch.sbdelivery.data.profile.api.ProfileApiService
+import ru.skillbranch.sbdelivery.data.profile.gateways.ProfileGatewayImpl
+import ru.skillbranch.sbdelivery.di.data.qualifiers.AuthenticationApi
+import ru.skillbranch.sbdelivery.domain.auth.gateway.LoginGateway
+import ru.skillbranch.sbdelivery.domain.auth.gateway.LogoutGateway
 import ru.skillbranch.sbdelivery.domain.dashboard.gateways.DashboardGateway
+import ru.skillbranch.sbdelivery.domain.profile.gateways.ProfileGateway
 
 /**
  * Created by Anna Shabaeva on 07.06.2020
@@ -31,8 +38,38 @@ class GatewayModule {
     )
 
     @Provides
-    fun provideAuthGateway(
+    fun provideLoginGateway(
         apiService: AuthApiService,
-        userAuthStorage: UserAuthStorage
-    ): AuthGateway = AuthGatewayImpl(authApiService = apiService, userAuthStorage = userAuthStorage)
+        userAuthStorage: UserAuthStorage,
+        userDataStorage: UserDataStorage
+    ): LoginGateway =
+        LoginGatewayImpl(
+            authApiService = apiService,
+            userAuthStorage = userAuthStorage,
+            userDataStorage = userDataStorage
+        )
+
+    @Provides
+    @AuthenticationApi
+    fun provideAuthLoginGateway(
+        @AuthenticationApi apiService: AuthApiService,
+        userAuthStorage: UserAuthStorage,
+        userDataStorage: UserDataStorage
+    ): LoginGateway =
+        LoginGatewayImpl(
+            authApiService = apiService,
+            userAuthStorage = userAuthStorage,
+            userDataStorage = userDataStorage
+        )
+
+    @Provides
+    fun provideLogoutGateway(authStorage: UserAuthStorage): LogoutGateway =
+        LogoutGatewayImpl(authStorage = authStorage)
+
+    @Provides
+    fun provideProfileGateway(
+        profileApiService: ProfileApiService,
+        userDataStorage: UserDataStorage
+    ): ProfileGateway =
+        ProfileGatewayImpl(profileApiService = profileApiService, userDataStorage = userDataStorage)
 }

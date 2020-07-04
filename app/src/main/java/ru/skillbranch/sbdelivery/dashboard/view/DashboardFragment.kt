@@ -26,8 +26,6 @@ class DashboardFragment : BaseFragment() {
 
     private lateinit var dashboardAdapter: DashboardAdapter
 
-    private val dashboardArguments by arguments<DashboardArguments>()
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         dashboardAdapter = DashboardAdapter()
@@ -36,10 +34,16 @@ class DashboardFragment : BaseFragment() {
             layoutManager = LinearLayoutManager(context)
         }
 
-        if(!dashboardArguments.hasAuth) {
+        viewModel.authStateLiveData.observe(::navigate)
+
+    }
+
+    private fun navigate(isAuth: Boolean) {
+        if(!isAuth) {
             navController.navigate(R.id.action_dashboardFragment_to_loginFragment)
         }
     }
+
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -55,8 +59,3 @@ class DashboardFragment : BaseFragment() {
     }
 
 }
-
-@Parcelize
-class DashboardArguments(
-    val hasAuth: Boolean
-): Parcelable

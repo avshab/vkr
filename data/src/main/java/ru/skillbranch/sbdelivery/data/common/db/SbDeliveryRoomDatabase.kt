@@ -2,7 +2,7 @@ package ru.skillbranch.sbdelivery.data.common.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import ru.skillbranch.sbdelivery.data.auth.api.model.UserAuthDbDto
+import ru.skillbranch.sbdelivery.data.auth.model.UserAuthDbDto
 import ru.skillbranch.sbdelivery.data.auth.storage.UserAuthDao
 
 /**

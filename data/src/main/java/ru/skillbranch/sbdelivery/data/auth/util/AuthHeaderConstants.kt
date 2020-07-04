@@ -1,4 +1,4 @@
-package ru.skillbranch.sbdelivery.data.auth.api.util
+package ru.skillbranch.sbdelivery.data.auth.util
 
 /**
  * Created by Anna Shabaeva on 01.07.2020

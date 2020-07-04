@@ -7,15 +7,15 @@ import androidx.room.Query
 import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Single
-import ru.skillbranch.sbdelivery.data.auth.api.model.UserAuthDbDto
-import ru.skillbranch.sbdelivery.data.auth.api.model.UserAuthStorage
+import ru.skillbranch.sbdelivery.data.auth.model.UserAuthDbDto
 
 /**
  * Created by Anna Shabaeva on 28.06.2020
  */
 
 @Dao
-abstract class UserAuthDao : UserAuthStorage {
+abstract class UserAuthDao :
+    UserAuthStorage {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract override fun put(value: UserAuthDbDto)

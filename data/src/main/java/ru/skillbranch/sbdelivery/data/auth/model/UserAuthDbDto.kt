@@ -1,4 +1,4 @@
-package ru.skillbranch.sbdelivery.data.auth.api.model
+package ru.skillbranch.sbdelivery.data.auth.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

@@ -2,6 +2,7 @@ package ru.skillbranch.sbdelivery.common.view
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
@@ -21,6 +22,10 @@ import ru.skillbranch.sbdelivery.common.navigation.BackAndHomeButtonsHandler
  */
 abstract class BaseFragment : Fragment(), BackAndHomeButtonsHandler {
 
+    interface ToolbarHandler {
+        fun setVisibility(isVisibly: Boolean)
+    }
+
     @get:LayoutRes protected abstract val layoutResId: Int
 
     @get:MenuRes protected open val menuResId: Int? = null
@@ -33,10 +38,19 @@ abstract class BaseFragment : Fragment(), BackAndHomeButtonsHandler {
     private val onStopDisposable = CompositeDisposable()
     private val onDestroyViewDisposable = CompositeDisposable()
 
+    private var callback: ToolbarHandler? = null
+
+    open val toolbarVisibility = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (menuResId != null) setHasOptionsMenu(true)
+        callback = activity as? ToolbarHandler
+    }
+
+    override fun onResume() {
+        callback?.setVisibility(toolbarVisibility)
+        super.onResume()
     }
 
     @CallSuper
@@ -72,9 +86,17 @@ abstract class BaseFragment : Fragment(), BackAndHomeButtonsHandler {
         super.onCreateOptionsMenu(menu, inflater)
     }
 
-    override fun handleBackButton(): Boolean = false
+    override fun handleBackButton(): Boolean {
+        Log.i("--TAG", "setVisibility = true")
+        callback?.setVisibility(true)
+        return false
+    }
 
-    override fun handleUpButton(): Boolean = false
+    override fun handleUpButton(): Boolean  {
+        Log.i("--TAG", "setVisibility = true")
+        callback?.setVisibility(true)
+        return false
+    }
 
     protected inline fun <T> LiveData<T>.observe(crossinline observer: (T) -> Unit) {
         observe(viewLifecycleOwner, Observer { if (it != null) observer(it) })

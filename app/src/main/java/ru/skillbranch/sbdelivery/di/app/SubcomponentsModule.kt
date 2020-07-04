@@ -11,6 +11,7 @@ import ru.skillbranch.sbdelivery.dashboard.view.DashboardFragment
 import ru.skillbranch.sbdelivery.launch.di.LaunchModule
 import ru.skillbranch.sbdelivery.launch.di.LaunchScope
 import ru.skillbranch.sbdelivery.launch.view.LaunchFragment
+import ru.skillbranch.sbdelivery.main.di.MainModule
 import ru.skillbranch.sbdelivery.main.view.MainActivity
 import ru.skillbranch.sbdelivery.main.di.MainScope
 import ru.skillbranch.sbdelivery.menu.di.MenuModule
@@ -25,7 +26,7 @@ import ru.skillbranch.sbdelivery.menu.view.MenuFragment
 abstract class SubcomponentsModule {
 
     @MainScope
-    @ContributesAndroidInjector
+    @ContributesAndroidInjector(modules = [MainModule::class])
     abstract fun buildMainActivity(): MainActivity
 
     @LaunchScope

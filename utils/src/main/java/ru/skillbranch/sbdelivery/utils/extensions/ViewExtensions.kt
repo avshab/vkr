@@ -85,3 +85,5 @@ fun View.makeVisibleOrInvisible(visible: Boolean) {
         makeInvisible()
     }
 }
+
+fun View.onClick(action: () -> Unit) = setOnClickListener { action.invoke() }

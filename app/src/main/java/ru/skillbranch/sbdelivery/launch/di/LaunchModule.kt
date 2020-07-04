@@ -2,7 +2,7 @@ package ru.skillbranch.sbdelivery.launch.di
 
 import dagger.Module
 import dagger.Provides
-import ru.skillbranch.sbdelivery.domain.auth.login.IsUserAuthorizedUseCase
+import ru.skillbranch.sbdelivery.domain.auth.usecases.IsUserAuthorizedUseCase
 import ru.skillbranch.sbdelivery.launch.model.LaunchViewModel
 import ru.skillbranch.sbdelivery.launch.view.LaunchFragment
 import ru.skillbranch.sbdelivery.utils.rx.Schedulers

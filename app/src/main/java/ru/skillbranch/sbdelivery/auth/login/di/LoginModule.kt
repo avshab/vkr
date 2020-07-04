@@ -5,7 +5,7 @@ import dagger.Module
 import dagger.Provides
 import ru.skillbranch.sbdelivery.auth.login.model.LoginViewModel
 import ru.skillbranch.sbdelivery.auth.login.view.LoginFragment
-import ru.skillbranch.sbdelivery.domain.auth.login.LoginUseCases
+import ru.skillbranch.sbdelivery.domain.auth.usecases.LoginUseCases
 import ru.skillbranch.sbdelivery.utils.rx.Schedulers
 import ru.skillbranch.sbdelivery.utils.viewModel.createViewModel
 import javax.inject.Provider

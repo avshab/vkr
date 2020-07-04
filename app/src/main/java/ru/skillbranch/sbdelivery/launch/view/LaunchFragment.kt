@@ -4,11 +4,7 @@ import android.os.Bundle
 import android.view.View
 import ru.skillbranch.sbdelivery.common.view.BaseFragment
 import ru.skillbranch.sbdelivery.R
-import ru.skillbranch.sbdelivery.dashboard.view.DashboardArguments
-import ru.skillbranch.sbdelivery.dashboard.view.DashboardFragment
 import ru.skillbranch.sbdelivery.launch.model.LaunchViewModel
-import ru.skillbranch.sbdelivery.utils.extensions.postDelayed
-import ru.skillbranch.sbdelivery.utils.extensions.toBundle
 import javax.inject.Inject
 
 /**
@@ -19,23 +15,20 @@ class LaunchFragment : BaseFragment() {
 
     override val layoutResId: Int = R.layout.fragment_launch
 
+    override val toolbarVisibility = false
+
     @Inject lateinit var viewModel: LaunchViewModel
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.authStateLiveData.observe(::navigate)
+        viewModel.stateLiveData.observe(::navigate)
     }
 
-    private fun navigate(isAuth: Boolean) {
+    private fun navigate(navigate: Boolean) {
 
-
-            //navController.navigate(R.id.action_launch_to_authorizedNavigation)
-
-        val args = DashboardArguments(hasAuth = isAuth)
-            navController.navigate(R.id.action_launch_to_authorizedNavigation, args.toBundle<DashboardFragment>())
-
-
+        navController.navigate(
+            R.id.action_launch_to_dashboardFragment
+        )
     }
-
-
 }

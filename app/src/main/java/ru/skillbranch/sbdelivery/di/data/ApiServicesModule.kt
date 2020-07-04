@@ -6,6 +6,8 @@ import retrofit2.Retrofit
 import retrofit2.create
 import ru.skillbranch.sbdelivery.data.auth.api.AuthApiService
 import ru.skillbranch.sbdelivery.data.dashboard.api.DashboardApiService
+import ru.skillbranch.sbdelivery.data.profile.api.ProfileApiService
+import ru.skillbranch.sbdelivery.di.data.qualifiers.AuthenticationApi
 
 /**
  * Created by Anna Shabaeva on 07.06.2020
@@ -18,5 +20,13 @@ class ApiServicesModule {
     fun provideDashboardApiService(retrofit: Retrofit): DashboardApiService = retrofit.create()
 
     @Provides
-    fun provideAuthApiService(retrofit: Retrofit): AuthApiService = retrofit.create()
+    @AuthenticationApi
+    fun provideAuthApiService(@AuthenticationApi retrofit: Retrofit): AuthApiService =
+        retrofit.create()
+
+    @Provides
+    fun provideLoginApiService(retrofit: Retrofit): AuthApiService = retrofit.create()
+
+    @Provides
+    fun provideProfileApiService(retrofit: Retrofit): ProfileApiService = retrofit.create()
 }
