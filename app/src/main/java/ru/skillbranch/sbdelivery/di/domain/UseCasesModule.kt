@@ -4,10 +4,7 @@ import dagger.Module
 import dagger.Provides
 import ru.skillbranch.sbdelivery.domain.auth.gateway.LoginGateway
 import ru.skillbranch.sbdelivery.domain.auth.gateway.LogoutGateway
-import ru.skillbranch.sbdelivery.domain.auth.usecases.IsUserAuthorizedUseCase
-import ru.skillbranch.sbdelivery.domain.auth.usecases.LoginUseCases
-import ru.skillbranch.sbdelivery.domain.auth.usecases.LogoutUseCase
-import ru.skillbranch.sbdelivery.domain.auth.usecases.ObserveUserAuthStatusUseCase
+import ru.skillbranch.sbdelivery.domain.auth.usecases.*
 import ru.skillbranch.sbdelivery.domain.dashboard.gateways.DashboardGateway
 import ru.skillbranch.sbdelivery.domain.dashboard.usecases.GetDashboardModelUseCases
 import ru.skillbranch.sbdelivery.domain.profile.gateways.ProfileGateway
@@ -45,4 +42,7 @@ class UseCasesModule {
     @Provides
     fun provideGetAndUpdateProfileUseCases(gateway: ProfileGateway) =
         GetAndUpdateProfileUseCases(gateway = gateway)
+
+    @Provides
+    fun provideRegisterUseCases(loginGateway: LoginGateway) = RegisterUseCases(gateway = loginGateway)
 }

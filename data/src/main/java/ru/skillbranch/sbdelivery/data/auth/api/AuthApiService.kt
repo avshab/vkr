@@ -16,5 +16,10 @@ interface AuthApiService {
         @Body body: LoginRequestBody
     ): Single<LoginResultResponseBody>
 
+    @POST("auth/register")
+    fun register(
+        @Body body: RegisterRequestBody
+    ): Single<LoginResultResponseBody>
+
 }
 

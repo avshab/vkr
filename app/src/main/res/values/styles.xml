@@ -13,6 +13,11 @@
         <item name="colorOnError">#FFFFFF</item>
         <item name="colorSurface">@color/color_surface</item>
         <item name="colorOnSurface">@color/color_accent</item>
+
+        <item name="md_corner_radius">6dp</item>
+        <item name="md_font_title">@font/roboto_medium</item>
+        <item name="md_font_body">@font/roboto</item>
+        <item name="md_font_button">@font/roboto_medium</item>
     </style>
 
     <style name="AppThemeSplash" parent="AppTheme">

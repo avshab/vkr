@@ -1,5 +1,6 @@
 package ru.skillbranch.sbdelivery.auth.login.model
 
+import io.reactivex.disposables.Disposable
 import ru.skillbranch.sbdelivery.utils.rx.Schedulers
 import ru.skillbranch.sbdelivery.common.viewModel.BaseViewModelWithState
 import ru.skillbranch.sbdelivery.common.viewModel.ViewModelState
@@ -16,17 +17,26 @@ class LoginViewModel(private val schedulers: Schedulers, private val loginUseCas
     val userEmailInputState = BehaviorState(EMPTY_STRING)
     val userPasswordInputState = BehaviorState(EMPTY_STRING)
 
+    private var loginDisposable: Disposable? = null
+
     fun debugLogin() {
-        loginUseCases.build(email = "rad@yandex.com", password = "Test12345")
-            .subscribeOn(schedulers.io()).observeOn(schedulers.ui()).subscribe( {
-                stateMutableLiveData.value = ViewModelState.Success(emptyList())
-            }, ::handleError).untilCleared()
+        loginDisposable?.dispose()
+        loginDisposable =
+            loginUseCases.build(email = "rad@yandex.com", password = "Test12345")
+                .subscribeOn(schedulers.io()).observeOn(schedulers.ui()).subscribe({
+                    stateMutableLiveData.value = ViewModelState.Success(emptyList())
+                }, ::handleError).untilCleared()
     }
 
     fun login() {
-        loginUseCases.build(email = userEmailInputState.value, password = userPasswordInputState.value)
-            .subscribeOn(schedulers.io()).observeOn(schedulers.ui()).subscribe( {
-                stateMutableLiveData.value = ViewModelState.Success(emptyList())
-            }, ::handleError).untilCleared()
+        loginDisposable?.dispose()
+        loginDisposable =
+            loginUseCases.build(
+                email = userEmailInputState.value,
+                password = userPasswordInputState.value
+            )
+                .subscribeOn(schedulers.io()).observeOn(schedulers.ui()).subscribe({
+                    stateMutableLiveData.value = ViewModelState.Success(emptyList())
+                }, ::handleError).untilCleared()
     }
 }

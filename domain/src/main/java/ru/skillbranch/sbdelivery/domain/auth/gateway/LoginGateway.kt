@@ -14,6 +14,8 @@ interface LoginGateway {
 
     fun login(email: String, password: String): Single<LoginModel>
 
+    fun register(name: String, surname: String, email: String, password: String): Single<LoginModel>
+
     fun getUserAuth(): Single<AuthModel>
 
     fun isUserAuthorized(): Single<Boolean>

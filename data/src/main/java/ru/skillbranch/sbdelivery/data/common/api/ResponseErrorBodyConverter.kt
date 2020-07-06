@@ -25,7 +25,6 @@ class ResponseErrorBodyConverter(
 
     fun getErrorBodyFromResponseBody(responseBody: BaseResponseBody): BaseErrorResponseBody {
         return BaseErrorResponseBody(
-            // apiVersion = responseBody.apiVersion,
             errorCode = responseBody.errorCode,
             errorMessage = responseBody.message
         )

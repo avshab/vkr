@@ -4,6 +4,7 @@ import dagger.Module
 import dagger.Provides
 import ru.skillbranch.sbdelivery.auth.registration.model.RegistrationViewModel
 import ru.skillbranch.sbdelivery.auth.registration.view.RegistrationFragment
+import ru.skillbranch.sbdelivery.domain.auth.usecases.RegisterUseCases
 import ru.skillbranch.sbdelivery.utils.rx.Schedulers
 import ru.skillbranch.sbdelivery.utils.viewModel.createViewModel
 import javax.inject.Provider
@@ -19,11 +20,13 @@ class RegistrationModule {
     @RegistrationScope
     fun provideRegistrationViewModel(
         fragment: RegistrationFragment,
-        schedulers: Provider<Schedulers>
+        schedulers: Provider<Schedulers>,
+        registerUseCases: Provider<RegisterUseCases>
     ) : RegistrationViewModel {
         return fragment.createViewModel {
             RegistrationViewModel(
-                schedulers = schedulers.get()
+                schedulers = schedulers.get(),
+                registerUseCases = registerUseCases.get()
             )
         }
     }

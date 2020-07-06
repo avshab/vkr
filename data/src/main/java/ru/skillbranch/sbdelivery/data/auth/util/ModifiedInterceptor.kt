@@ -10,7 +10,7 @@ class ModifiedInterceptor() : Interceptor {
 
         val request = chain.request()
 
-        Log.i(MODIFIED_SINCE,  "0")
+        Log.i("--TAG",  "MODIFIED_SINCE 0")
         return chain.proceed(
             request
                 .newBuilder()

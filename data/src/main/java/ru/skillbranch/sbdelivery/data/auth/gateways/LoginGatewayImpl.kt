@@ -4,6 +4,7 @@ import io.reactivex.Observable
 import io.reactivex.Single
 import ru.skillbranch.sbdelivery.data.auth.api.AuthApiService
 import ru.skillbranch.sbdelivery.data.auth.api.LoginRequestBody
+import ru.skillbranch.sbdelivery.data.auth.api.RegisterRequestBody
 import ru.skillbranch.sbdelivery.domain.auth.gateway.LoginGateway
 import ru.skillbranch.sbdelivery.domain.auth.model.AuthModel
 import ru.skillbranch.sbdelivery.data.auth.model.UserAuthDbDto
@@ -42,6 +43,32 @@ class LoginGatewayImpl(
             .doOnSuccess(::saveUserAuth).doOnSuccess(::saveUserData)
     }
 
+    override fun register(
+        name: String,
+        surname: String,
+        email: String,
+        password: String
+    ): Single<LoginModel> {
+        return authApiService.register(
+            RegisterRequestBody(
+                firstName = name,
+                lastName = surname,
+                email = email,
+                password = password
+            )
+        ).map {
+            LoginModel(
+                id = it.id,
+                firstName = it.firstName,
+                lastName = it.lastName,
+                email = it.email,
+                accessToken = it.accessToken,
+                refreshToken = it.refreshToken
+            )
+        }
+            .doOnSuccess(::saveUserAuth).doOnSuccess(::saveUserData)
+    }
+
     private fun saveUserAuth(loginResult: LoginModel) {
         with(loginResult) {
             val dbDto =
@@ -56,11 +83,11 @@ class LoginGatewayImpl(
     private fun saveUserData(loginResult: LoginModel) {
         with(loginResult) {
             val userData = UserDataModel(
-                    id,
-                    firstName,
-                    lastName,
-                    email
-                )
+                id,
+                firstName,
+                lastName,
+                email
+            )
             userDataStorage.saveUserDataModel(userData)
         }
     }

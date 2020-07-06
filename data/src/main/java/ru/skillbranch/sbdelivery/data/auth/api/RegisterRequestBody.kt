@@ -2,7 +2,13 @@ package ru.skillbranch.sbdelivery.data.auth.api
 
 import com.google.gson.annotations.SerializedName
 
-class LoginRequestBody(
+class RegisterRequestBody(
+
+    @SerializedName("firstName")
+    val firstName: String,
+
+    @SerializedName("lastName")
+    val lastName: String,
 
     @SerializedName("email")
     val email: String,
@@ -10,4 +16,3 @@ class LoginRequestBody(
     @SerializedName("password")
     val password: String
 )
-

@@ -6,20 +6,19 @@
 
             <item android:id="@android:id/mask">
                 <shape>
-                    <stroke android:width="1dp" android:color="@color/color_border"/>
                     <corners android:radius="6dp" />
                     <solid android:color="@color/color_primary" />
                 </shape>
             </item>
-
+            <item android:drawable="@drawable/bg_rounded_corners" />
         </ripple>
     </item>
 
     <item>
         <shape>
-            <stroke android:width="1dp" android:color="@color/color_border"/>
+            <stroke android:width="5dp" android:color="#00FFFFFF"/>
             <corners android:radius="6dp" />
-            <solid android:color="#FFFFFF" />
+            <solid android:color="#00FFFFFF" />
         </shape>
     </item>
 
