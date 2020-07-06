@@ -5,11 +5,11 @@ import com.google.gson.annotations.SerializedName
 /**
  * Created by Anna Shabaeva on 07.06.2020
  */
-//TODO not used
+////TODO not used
 open class BaseResponseBody {
 
-    @SerializedName("apiVersion")
-    val apiVersion: String? = null
+//    @SerializedName("apiVersion")
+//    val apiVersion: String? = null
 
     @SerializedName("error")
     val isError: Boolean? = false

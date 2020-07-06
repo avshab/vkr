@@ -7,6 +7,7 @@ import android.view.*
 import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
 import androidx.annotation.MenuRes
+import androidx.appcompat.app.ActionBar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
@@ -15,7 +16,11 @@ import androidx.navigation.fragment.findNavController
 import dagger.android.support.AndroidSupportInjection
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
+import kotlinx.android.synthetic.main.fragment_login.*
+import kotlinx.android.synthetic.main.view_toolbar.*
+import kotlinx.android.synthetic.main.view_toolbar.view.*
 import ru.skillbranch.sbdelivery.common.navigation.BackAndHomeButtonsHandler
+import ru.skillbranch.sbdelivery.utils.extensions.onClick
 
 /**
  * Created by Anna Shabaeva on 07.06.2020
@@ -96,6 +101,11 @@ abstract class BaseFragment : Fragment(), BackAndHomeButtonsHandler {
         Log.i("--TAG", "setVisibility = true")
         callback?.setVisibility(true)
         return false
+    }
+
+    protected fun setupSecondToolBar(title: String, initializer: (ActionBar.() -> Unit)? = null) {
+        toolbar.navigateUpButton.onClick { navController.navigateUp() }
+        toolbar.toolbarTitleView.text = title
     }
 
     protected inline fun <T> LiveData<T>.observe(crossinline observer: (T) -> Unit) {

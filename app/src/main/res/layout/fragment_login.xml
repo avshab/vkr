@@ -7,6 +7,8 @@
     android:background="@drawable/ic_background"
     tools:theme="@style/AppThemeClear">
 
+    <include layout="@layout/view_toolbar"/>
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -49,7 +51,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/emailInputLayout"
-                app:passwordToggleEnabled="true"
                 tools:ignore="RtlSymmetry">
 
                 <com.google.android.material.textfield.TextInputEditText

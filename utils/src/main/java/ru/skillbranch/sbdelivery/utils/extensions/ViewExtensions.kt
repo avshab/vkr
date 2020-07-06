@@ -1,6 +1,7 @@
 package ru.skillbranch.sbdelivery.utils.extensions
 
 import android.graphics.drawable.Drawable
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -87,3 +88,20 @@ fun View.makeVisibleOrInvisible(visible: Boolean) {
 }
 
 fun View.onClick(action: () -> Unit) = setOnClickListener { action.invoke() }
+
+fun View.adjustHeightToFillParent() {
+    val parentViewGroup = parent as? ViewGroup ?: return
+
+    val parentPadding = parentViewGroup.paddingTop + parentViewGroup.paddingBottom
+    val height = parentViewGroup.height - top - parentPadding
+    val adjustedHeight = Math.max(minimumHeight, height)
+
+    layoutParams.height = adjustedHeight
+
+    requestLayout()
+}
+
+fun View.dpToPx(dpValue: Float): Float =
+    TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpValue, resources.displayMetrics)
+
+fun View.dpToPx(dpValue: Int): Int = (dpValue * resources.displayMetrics.density).toInt()

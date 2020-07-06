@@ -68,10 +68,10 @@ class NetworkModule {
         modifiedInterceptor: ModifiedInterceptor
     ): OkHttpClient.Builder {
         return OkHttpClient.Builder()
-            .callTimeout(50L, TimeUnit.SECONDS)
+            .callTimeout(10L, TimeUnit.SECONDS)
             .addInterceptor(loggingInterceptor)
-            .addInterceptor(errorInterceptor)
             .addInterceptor(modifiedInterceptor)
+            .addInterceptor(errorInterceptor)
     }
 
     @Provides
@@ -95,7 +95,6 @@ class NetworkModule {
             .client(okHttpClient)
             .build()
     }
-
 
     @Provides
     @AppScope
@@ -126,13 +125,6 @@ class NetworkModule {
             .loggable(true)
             .setLevel(Level.BODY)
             .setLevel(Level.HEADERS)
-//            .logger { level, tag, message ->
-//                when (level) {
-//                    Platform.INFO -> Log.i("--TAG", message)
-//                    Platform.WARN -> Log.e("--TAG", message)
-//                    else -> Log.d("--TAG", message)
-//                }
-//            }
             .build()
     }
 
@@ -155,7 +147,6 @@ class NetworkModule {
     fun provideGson(): Gson {
         return GsonBuilder().setDateFormat(DATE_FORMAT).create()
     }
-
 
     @Provides
     @AppScope

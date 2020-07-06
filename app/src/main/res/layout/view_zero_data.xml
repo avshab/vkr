@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:orientation="vertical"
+    tools:parentTag="androidx.appcompat.widget.LinearLayoutCompat"
+    tools:theme="@style/AppThemeClear">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iconImageView"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:tint="@color/color_accent"
+        tools:src="@drawable/ic_error_unspecified" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/titleTextView"
+        style="@style/TextTitle"
+        android:layout_width="match_parent"
+        android:paddingHorizontal="24dp"
+        android:paddingBottom="16dp"
+        android:textAlignment="center"
+        tools:text="Ошибка загрузки данных" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/contentTextView"
+        style="@style/TextBody"
+        android:layout_width="match_parent"
+        android:layout_marginTop="0dp"
+        android:paddingHorizontal="24dp"
+        android:paddingBottom="16dp"
+        android:textAlignment="center"
+        tools:text="Попробуйте обновить экран позднее" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button"
+        style="@style/ButtonTransparent"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:minWidth="240dp"
+        android:visibility="gone"
+        tools:text="Обновить"
+        tools:visibility="visible" />
+</merge>

@@ -2,6 +2,9 @@ package ru.skillbranch.sbdelivery.utils.extensions
 
 import android.os.Bundle
 import android.os.Parcelable
+import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.core.os.bundleOf
 import androidx.core.view.postDelayed
 import androidx.fragment.app.Fragment
@@ -60,3 +63,10 @@ inline fun <reified T : KClass<out Fragment>> T.getArgKey(): String {
 }
 
 inline fun <reified T : Fragment> T.getArgKey(): String = this::class.getArgKey()
+
+fun AppCompatActivity.setupToolbar(toolbarView: Toolbar, initializer: (ActionBar.() -> Unit)? = null) {
+    run {
+        setSupportActionBar(toolbarView)
+        supportActionBar?.let { initializer?.invoke(it) }
+    }
+}

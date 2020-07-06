@@ -28,6 +28,11 @@ class LoginFragment : BaseFragment() {
 
         viewModel.stateLiveData.observe(::handleState)
 
+        setupSecondToolBar(getString(R.string.login_title))
+
+        registrationButton.onClick {
+            navController.navigate(R.id.action_loginFragment_to_registrationFragment)
+        }
     }
 
     fun handleState(state: ViewModelState) {

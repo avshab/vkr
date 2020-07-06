@@ -4,6 +4,8 @@ import android.content.Context
 import dagger.Module
 import dagger.Provides
 import ru.skillbranch.sbdelivery.SBDeliveryApp
+import ru.skillbranch.sbdelivery.common.view.zerodata.DefaultZeroDataFactory
+import javax.inject.Provider
 
 /**
  * Created by Anna Shabaeva on 06.06.2020
@@ -17,8 +19,5 @@ class AppModule {
     fun provideAppContext(app: SBDeliveryApp): Context = app.applicationContext
 //
 //    @Provides
-//    @AppScope
-//    fun provideResponseErrorBodyConverter(): ResponseErrorBodyConverter {
-//        return ResponseErrorBodyConverter()
-//    }
+//    fun provideDefaultZeroDataFactory() = DefaultZeroDataFactory()
 }

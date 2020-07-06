@@ -2,6 +2,7 @@ package ru.skillbranch.sbdelivery.dashboard.view.adapter
 
 import ru.skillbranch.sbdelivery.common.view.adapter.BaseCellDelegatcionAdapter
 import ru.skillbranch.sbdelivery.common.view.adapter.diff.BaseDiffCallback
+import ru.skillbranch.sbdelivery.common.view.zerodata.ZeroDataCellDelegate
 import ru.skillbranch.sbdelivery.dashboard.view.delegates.DashboardAdCellDelegate
 import ru.skillbranch.sbdelivery.dashboard.view.delegates.DashboardSubtitleCellDelegate
 import ru.skillbranch.sbdelivery.dashboard.view.delegates.HorizontalDishesRVCellDelegate
@@ -19,6 +20,8 @@ class DashboardAdapter(
             addDelegate(
                 HorizontalDishesRVCellDelegate()
             )
+
+            addDelegate(ZeroDataCellDelegate())
 
             addDelegate(DashboardAdCellDelegate())
 

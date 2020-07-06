@@ -1,6 +1,7 @@
 package ru.skillbranch.sbdelivery.data.dashboard.api
 
 import io.reactivex.Single
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 import ru.skillbranch.sbdelivery.domain.dashboard.model.DishModel
@@ -16,9 +17,9 @@ interface DashboardApiService {
     fun getDishes(
         @Query("offset") offset: Long = 0,
         @Query("limit") limit: Long = 10
-    ): Single<List<DishModel>?>
+    ): Single<Response<List<DishModel>?>>
 
 
     @GET("main/recommend")
-    fun getRecommend(): Single<List<IDS>?>
+    fun getRecommend(): Single<Response<List<IDS>?>>
 }

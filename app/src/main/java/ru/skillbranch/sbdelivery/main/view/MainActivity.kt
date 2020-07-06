@@ -23,6 +23,7 @@ import ru.skillbranch.sbdelivery.main.model.MainViewModelState
 import ru.skillbranch.sbdelivery.utils.exceptions.EMPTY_STRING
 import ru.skillbranch.sbdelivery.utils.extensions.makeVisibleOrGone
 import ru.skillbranch.sbdelivery.utils.extensions.onClick
+import ru.skillbranch.sbdelivery.utils.extensions.setupToolbar
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), BaseFragment.ToolbarHandler {
@@ -42,7 +43,7 @@ class MainActivity : AppCompatActivity(), BaseFragment.ToolbarHandler {
         AndroidInjection.inject(this)
         navView.setupWithNavController(navController)
 
-        setSupportActionBar(toolbar)
+        setupToolbar(toolbar)
         navView.bringToFront()
         val toggle = ActionBarDrawerToggle(
             this,

@@ -6,11 +6,10 @@ import ru.skillbranch.sbdelivery.data.auth.api.AuthApiService
 import ru.skillbranch.sbdelivery.data.auth.storage.UserAuthStorage
 import ru.skillbranch.sbdelivery.data.auth.gateways.LoginGatewayImpl
 import ru.skillbranch.sbdelivery.data.auth.gateways.LogoutGatewayImpl
+import ru.skillbranch.sbdelivery.data.common.api.BaseResponseMapper
 import ru.skillbranch.sbdelivery.data.common.userData.UserDataStorage
 import ru.skillbranch.sbdelivery.data.dashboard.api.DashboardApiService
 import ru.skillbranch.sbdelivery.data.dashboard.gateways.DashboardGatewayImpl
-import ru.skillbranch.sbdelivery.data.dashboard.mappers.DishesListResponseMapper
-import ru.skillbranch.sbdelivery.data.dashboard.mappers.IdsResponseMapper
 import ru.skillbranch.sbdelivery.data.profile.api.ProfileApiService
 import ru.skillbranch.sbdelivery.data.profile.gateways.ProfileGatewayImpl
 import ru.skillbranch.sbdelivery.di.data.qualifiers.AuthenticationApi
@@ -29,12 +28,10 @@ class GatewayModule {
     @Provides
     fun provideDashboardGateway(
         apiService: DashboardApiService,
-        dishesMapper: DishesListResponseMapper,
-        idsMapper: IdsResponseMapper
+        mapper: BaseResponseMapper
     ): DashboardGateway = DashboardGatewayImpl(
         apiService = apiService,
-        dishesMapper = dishesMapper,
-        idsMapper = idsMapper
+        mapper = mapper
     )
 
     @Provides

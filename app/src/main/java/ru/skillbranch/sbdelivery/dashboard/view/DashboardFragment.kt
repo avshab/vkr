@@ -38,23 +38,27 @@ class DashboardFragment : BaseFragment() {
 
     }
 
-    private fun navigate(isAuth: Boolean) {
-        if(!isAuth) {
-            navController.navigate(R.id.action_dashboardFragment_to_loginFragment)
-        }
-    }
-
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
         viewModel.stateLiveData
             .observe(::handleState)
+
+        viewModel.authStateLiveData
+            .observe(::navigate)
+    }
+
+    private fun navigate(isAuth: Boolean) {
+        if (!isAuth) {
+            navController.navigate(R.id.action_dashboardFragment_to_loginFragment)
+        }
+        viewModel.removeAuthObserver()
     }
 
     private fun handleState(state: ViewModelState) {
-        when(state) {
+        when (state) {
             is ViewModelState.Success -> dashboardAdapter.items = state.list
+            is ViewModelState.Error -> dashboardAdapter.items = state.zeroCell
         }
     }
 

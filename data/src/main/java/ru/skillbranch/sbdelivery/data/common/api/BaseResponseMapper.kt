@@ -8,21 +8,20 @@ import ru.skillbranch.sbdelivery.utils.exceptions.defaultIfNull
  */
 
 
-abstract class BaseResponseMapper<R : BaseResponseBody, T : Any>(
+class BaseResponseMapper(
     private val errorBodyConverter: ResponseErrorBodyConverter
-
 ) {
 
-    fun map(response: Response<R>): T? {
+    fun map(response: Response<Any?>): Any? {
         val result = if (response.isSuccessful && response.body() != null) {
 
             @Suppress("UNCHECKED_CAST")
-            val body = response.body() as R
+            val body = response.body() as BaseResponseBody
             if (body.isError.defaultIfNull) {
                 val errorBody = errorBodyConverter.getErrorBodyFromResponseBody(body)
                 mapError(errorBody)
             } else {
-                mapResult(body)
+               body
             }
 
         } else {
@@ -34,9 +33,7 @@ abstract class BaseResponseMapper<R : BaseResponseBody, T : Any>(
         return result
     }
 
-    protected abstract fun mapResult(responseBody: R): T
-
-    protected open fun mapError(errorBody: BaseErrorResponseBody): T {
+    private fun mapError(errorBody: BaseErrorResponseBody): Any {
         throw IllegalStateException("Server returned unhandled error body. Check response logs")
     }
 

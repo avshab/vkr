@@ -3,7 +3,7 @@ package ru.skillbranch.sbdelivery.dashboard.model
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import io.reactivex.disposables.Disposable
-import ru.skillbranch.sbdelivery.common.viewModel.BaseViewModel
+import ru.skillbranch.sbdelivery.common.viewModel.BaseViewModelWithState
 import ru.skillbranch.sbdelivery.common.viewModel.ViewModelState
 import ru.skillbranch.sbdelivery.dashboard.view.builder.DashboardCellsBuilder
 import ru.skillbranch.sbdelivery.domain.auth.usecases.IsUserAuthorizedUseCase
@@ -21,16 +21,13 @@ class DashboardViewModel(
     isUserAuthorizedUseCase: IsUserAuthorizedUseCase,
     private val getDashboardModelUseCases: GetDashboardModelUseCases,
     private val cellsBuilder: DashboardCellsBuilder
-) : BaseViewModel() {
+) : BaseViewModelWithState() {
 
     private var authDisposable: Disposable? = null
     private var dataDisposable: Disposable? = null
 
     private val authStateDelegate = MutableLiveData<Boolean>()
     val authStateLiveData = authStateDelegate.asLiveData
-
-    private val stateMutableLiveData = MutableLiveData<ViewModelState>()
-    val stateLiveData = stateMutableLiveData.asLiveData
 
     init {
         authDisposable?.dispose()
@@ -39,12 +36,19 @@ class DashboardViewModel(
         loadData()
     }
 
+    fun removeAuthObserver() {
+        authStateDelegate.value = null
+    }
+
     private fun loadData() {
         dataDisposable?.dispose()
         dataDisposable = getDashboardModelUseCases.buildSingle().subscribeOn(schedulers.io())
             .observeOn(schedulers.ui())
             .doOnSubscribe { stateMutableLiveData.value = ViewModelState.Loading }
-            .subscribe(::handleResult)
+            .subscribe(
+                ::handleResult,
+                ::handleError
+            )
             .untilCleared()
     }
 
@@ -58,4 +62,8 @@ class DashboardViewModel(
         }
         stateMutableLiveData.value = ViewModelState.Success(cellsBuilder.build(data))
     }
+
+//    private fun handleError(throwable: Throwable) {
+//        Log.i("--TAG", "handleError")
+//    }
 }

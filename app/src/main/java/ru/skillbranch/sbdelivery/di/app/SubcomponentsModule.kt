@@ -5,6 +5,9 @@ import dagger.android.ContributesAndroidInjector
 import ru.skillbranch.sbdelivery.auth.login.di.LoginModule
 import ru.skillbranch.sbdelivery.auth.login.di.LoginScope
 import ru.skillbranch.sbdelivery.auth.login.view.LoginFragment
+import ru.skillbranch.sbdelivery.auth.registration.di.RegistrationModule
+import ru.skillbranch.sbdelivery.auth.registration.di.RegistrationScope
+import ru.skillbranch.sbdelivery.auth.registration.view.RegistrationFragment
 import ru.skillbranch.sbdelivery.dashboard.di.DashboardModule
 import ru.skillbranch.sbdelivery.dashboard.di.DashboardScope
 import ru.skillbranch.sbdelivery.dashboard.view.DashboardFragment
@@ -44,4 +47,8 @@ abstract class SubcomponentsModule {
     @LoginScope
     @ContributesAndroidInjector(modules = [LoginModule::class])
     abstract fun buildLoginFragment(): LoginFragment
+
+    @RegistrationScope
+    @ContributesAndroidInjector(modules = [RegistrationModule::class])
+    abstract fun buildRegistrationFragment(): RegistrationFragment
 }
