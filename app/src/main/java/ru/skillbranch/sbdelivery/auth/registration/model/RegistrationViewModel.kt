@@ -1,7 +1,6 @@
 package ru.skillbranch.sbdelivery.auth.registration.model
 
 import io.reactivex.disposables.Disposable
-import ru.skillbranch.sbdelivery.common.viewModel.BaseViewModel
 import ru.skillbranch.sbdelivery.common.viewModel.BaseViewModelWithState
 import ru.skillbranch.sbdelivery.common.viewModel.ViewModelState
 import ru.skillbranch.sbdelivery.domain.auth.usecases.RegisterUseCases

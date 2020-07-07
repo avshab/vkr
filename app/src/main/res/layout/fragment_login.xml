@@ -7,7 +7,7 @@
     android:background="@drawable/ic_background"
     tools:theme="@style/AppThemeClear">
 
-    <include layout="@layout/view_toolbar"/>
+    <include layout="@layout/view_toolbar" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -18,7 +18,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginTop="?actionBarSize"
+            android:orientation="vertical"
+            android:paddingTop="125dp">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/emailInputLayout"
@@ -26,16 +28,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/login_email_hint"
-                app:errorTextColor="@color/error_color"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:errorTextColor="@color/error_color">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/emailInputEditText"
                     style="@style/EditTextOneLineInput"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:imeOptions="actionNext|flagNoExtractUi"
                     android:inputType="textEmailAddress" />
 
@@ -48,16 +45,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:hint="@string/login_password_hint"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/emailInputLayout"
                 tools:ignore="RtlSymmetry">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/passwordInputEditText"
                     style="@style/EditTextOneLineInput"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:imeOptions="actionDone|flagNoExtractUi"
                     android:inputType="textPassword" />
 
@@ -68,22 +60,20 @@
                 style="@style/ButtonPrimary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
                 android:layout_marginTop="45dp"
-                android:text="@string/login_enter"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/passwordInputLayout" />
+                android:layout_marginEnd="30dp"
+                android:text="@string/login_enter" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/registrationButton"
                 style="@style/ButtonTransparent"
                 android:layout_width="match_parent"
+                android:layout_marginStart="30dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginEnd="30dp"
                 android:layout_marginBottom="16dp"
-                android:text="@string/login_registration"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/loginButton" />
+                android:text="@string/login_registration" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
@@ -92,6 +82,8 @@
         style="@style/ButtonTransparentSecond"
         android:layout_width="match_parent"
         android:layout_gravity="bottom|end"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
         android:layout_marginBottom="16dp"
         android:text="@string/login_recover"
         app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"

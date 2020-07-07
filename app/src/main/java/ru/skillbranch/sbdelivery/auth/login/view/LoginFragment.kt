@@ -2,12 +2,7 @@ package ru.skillbranch.sbdelivery.auth.login.view
 
 import android.os.Bundle
 import android.view.View
-import kotlinx.android.synthetic.main.fragment_login.emailInputEditText
-import kotlinx.android.synthetic.main.fragment_login.emailInputLayout
-import kotlinx.android.synthetic.main.fragment_login.loginButton
-import kotlinx.android.synthetic.main.fragment_login.passwordInputEditText
-import kotlinx.android.synthetic.main.fragment_login.passwordInputLayout
-import kotlinx.android.synthetic.main.fragment_login.registrationButton
+import kotlinx.android.synthetic.main.fragment_login.*
 import ru.skillbranch.sbdelivery.common.view.BaseFragment
 import ru.skillbranch.sbdelivery.R
 import ru.skillbranch.sbdelivery.auth.login.model.LoginViewModel
@@ -41,6 +36,10 @@ class LoginFragment : BaseFragment() {
 
         registrationButton.onClick {
             navController.navigate(R.id.action_loginFragment_to_registrationFragment)
+        }
+
+        passwordRecoveryButton.onClick {
+            navController.navigate(R.id.action_loginFragment_to_recoveryFirstStepFragment)
         }
     }
 

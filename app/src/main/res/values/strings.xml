@@ -20,6 +20,18 @@
     <string name="registration_register">Зарегистрироваться</string>
     <!--end region-->
 
+    <!--region password recovery-->
+    <string name="password_title">Восстановление пароля</string>
+    <string name="password_input_email_long_hint">Введите электронную почту, которую вы использовали при регистрации, и мы вышлем на нее код для восстановления пароля</string>
+    <string name="password_input_email_hint">E-mail</string>
+    <string name="password_send">Отправить</string>
+    <string name="password_input_code">Введите проверочный код</string>
+    <string name="password_input_new_password">Введите новый пароль</string>
+    <string name="password_password_hint">Пароль</string>
+    <string name="password_repeat_password_hint">Повторите пароль</string>
+    <string name="password_save">Сохранить</string>
+    <!--end region-->
+
     <!--region menu.xml-->
     <string name="menu_open">Открыть меню</string>
     <string name="menu_close">Закрыть меню</string>

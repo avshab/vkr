@@ -44,6 +44,9 @@
         <action
             android:id="@+id/action_loginFragment_to_registrationFragment"
             app:destination="@id/registrationFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_recoveryFirstStepFragment"
+            app:destination="@id/recoveryFirstStepFragment" />
     </fragment>
 
     <fragment
@@ -53,4 +56,30 @@
         tools:layout="@layout/fragment_registration">
 
     </fragment>
+
+    <fragment
+        android:id="@+id/recoveryFirstStepFragment"
+        android:name="ru.skillbranch.sbdelivery.auth.recovery.step1.view.RecoveryFirstStepFragment"
+        android:label="RecoveryFirstStepFragment"
+        tools:layout="@layout/fragment_password_recovery_step_1">
+        <action
+            android:id="@+id/action_recoveryFirstStepFragment_to_recoverySecondStepFragment"
+            app:destination="@id/recoverySecondStepFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/recoverySecondStepFragment"
+        android:name="ru.skillbranch.sbdelivery.auth.recovery.step2.view.RecoverySecondStepFragment"
+        android:label="RecoverySecondStepFragment"
+        tools:layout="@layout/fragment_password_recovery_step_2">
+        <action
+            android:id="@+id/action_recoverySecondStepFragment_to_recoveryThirdStepFragment"
+            app:destination="@id/recoveryThirdStepFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/recoveryThirdStepFragment"
+        android:name="ru.skillbranch.sbdelivery.auth.recovery.step3.view.RecoveryThirdStepFragment"
+        android:label="RecoveryThirdStepFragment"
+        tools:layout="@layout/fragment_password_recovery_step_3"/>
 </navigation>

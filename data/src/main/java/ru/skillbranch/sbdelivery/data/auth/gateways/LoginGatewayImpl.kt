@@ -2,15 +2,19 @@ package ru.skillbranch.sbdelivery.data.auth.gateways
 
 import io.reactivex.Observable
 import io.reactivex.Single
+import retrofit2.Response
 import ru.skillbranch.sbdelivery.data.auth.api.AuthApiService
 import ru.skillbranch.sbdelivery.data.auth.api.LoginRequestBody
 import ru.skillbranch.sbdelivery.data.auth.api.RegisterRequestBody
+import ru.skillbranch.sbdelivery.data.auth.model.LoginResultResponseBody
 import ru.skillbranch.sbdelivery.domain.auth.gateway.LoginGateway
 import ru.skillbranch.sbdelivery.domain.auth.model.AuthModel
 import ru.skillbranch.sbdelivery.data.auth.model.UserAuthDbDto
 import ru.skillbranch.sbdelivery.data.auth.storage.UserAuthStorage
+import ru.skillbranch.sbdelivery.data.common.api.BaseResponseMapper
 import ru.skillbranch.sbdelivery.data.common.userData.UserDataStorage
 import ru.skillbranch.sbdelivery.domain.auth.model.LoginModel
+import ru.skillbranch.sbdelivery.domain.dashboard.model.DishModel
 import ru.skillbranch.sbdelivery.domain.userData.model.UserDataModel
 
 /**
@@ -20,6 +24,7 @@ class LoginGatewayImpl(
     private val authApiService: AuthApiService,
     private val userAuthStorage: UserAuthStorage,
     private val userDataStorage: UserDataStorage
+
 ) : LoginGateway {
 
     override fun observeUserAuth(): Observable<AuthModel> {
@@ -30,6 +35,10 @@ class LoginGatewayImpl(
 
     override fun login(email: String, password: String): Single<LoginModel> {
         return authApiService.login(LoginRequestBody(email, password))
+            .map {
+                it.body()
+
+            }
             .map {
                 LoginModel(
                     id = it.id,
@@ -56,7 +65,10 @@ class LoginGatewayImpl(
                 email = email,
                 password = password
             )
-        ).map {
+        )
+            .map {
+                it.body()
+            }.map {
             LoginModel(
                 id = it.id,
                 firstName = it.firstName,

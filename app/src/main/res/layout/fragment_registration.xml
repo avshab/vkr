@@ -11,13 +11,14 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center_vertical"
-        app:layout_dodgeInsetEdges="bottom">
+        android:layout_gravity="center_vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginTop="?actionBarSize"
+            android:orientation="vertical"
+            android:paddingTop="45dp">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/nameInputLayout"
@@ -25,16 +26,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/registration_name_hint"
-                app:errorTextColor="@color/error_color"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:errorTextColor="@color/error_color">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/nameInputEditText"
                     style="@style/EditTextOneLineInput"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:imeOptions="actionNext|flagNoExtractUi"
                     android:inputType="textPersonName" />
 
@@ -48,16 +44,11 @@
                 android:layout_marginTop="16dp"
                 android:hint="@string/registration_surname_hint"
                 android:paddingStart="0dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/nameInputLayout"
                 tools:ignore="RtlSymmetry">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/surnameInputEditText"
                     style="@style/EditTextOneLineInput"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:imeOptions="actionNext|flagNoExtractUi"
                     android:inputType="textPersonName" />
 
@@ -70,18 +61,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:hint="@string/registration_email_hint"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/surnameInputLayout"
                 tools:ignore="RtlSymmetry">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/emailInputEditText"
                     style="@style/EditTextOneLineInput"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:imeOptions="actionNext|flagNoExtractUi"
-                    android:inputType="textPassword" />
+                    android:inputType="textPersonName" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -93,16 +79,11 @@
                 android:layout_marginTop="16dp"
                 android:hint="@string/registration_password_hint"
                 android:paddingStart="0dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/emailInputLayout"
                 tools:ignore="RtlSymmetry">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/passwordInputEditText"
                     style="@style/EditTextOneLineInput"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:imeOptions="actionDone|flagNoExtractUi"
                     android:inputType="textPassword" />
 
@@ -113,22 +94,20 @@
                 style="@style/ButtonPrimary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
                 android:layout_marginTop="45dp"
-                android:text="@string/registration_register"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/passwordInputLayout" />
+                android:layout_marginEnd="30dp"
+                android:text="@string/registration_register" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/enterButton"
                 style="@style/ButtonTransparent"
                 android:layout_width="match_parent"
+                android:layout_marginStart="30dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginEnd="30dp"
                 android:layout_marginBottom="16dp"
-                android:text="@string/registration_enter"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/loginButton" />
+                android:text="@string/registration_enter" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

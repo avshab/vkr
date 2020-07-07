@@ -136,6 +136,7 @@ class NetworkModule {
         )
     }
 
+
     @Provides
     @AppScope
     fun provideErrorInterceptor(connectionChecker: ConnectionChecker): ErrorInterceptor {

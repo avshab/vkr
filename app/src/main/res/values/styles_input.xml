@@ -17,14 +17,10 @@
     </style>
 
     <style name="OutlinedInputLayout" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <item name="boxCornerRadiusBottomEnd">6dp</item>
-        <item name="boxCornerRadiusBottomStart">6dp</item>
-        <item name="boxCornerRadiusTopEnd">6dp</item>
-        <item name="boxCornerRadiusTopStart">6dp</item>
         <item name="android:contentInsetStart">6dp</item>
         <item name="android:contentInsetEnd">6dp</item>
-        <item name="android:layout_marginEnd">8dp</item>
-        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:layout_marginEnd">30dp</item>
+        <item name="android:layout_marginStart">30dp</item>
         <item name="hintTextColor">#B3BFCF</item>
         <item name="android:textColorHint">#B3BFCF</item>
         <item name="hintTextAppearance">@style/HintTextAppearance</item>
@@ -32,15 +28,14 @@
     </style>
 
     <style name="EditTextOneLineInput">
-        <item name="android:layout_marginEnd">8dp</item>
-        <item name="android:layout_marginStart">8dp</item>
         <item name="boxCornerRadiusBottomEnd">6dp</item>
         <item name="boxCornerRadiusBottomStart">6dp</item>
         <item name="boxCornerRadiusTopEnd">6dp</item>
         <item name="boxCornerRadiusTopStart">6dp</item>
+        <item name="android:layout_height">70dp</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:theme">@style/EditTextBaseTheme</item>
         <item name="android:background">@drawable/bg_input_text_field</item>
-
         <item name="android:paddingTop">40dp</item>
     </style>
 </resources>

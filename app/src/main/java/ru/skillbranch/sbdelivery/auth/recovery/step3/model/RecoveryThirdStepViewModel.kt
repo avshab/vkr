@@ -1,0 +1,14 @@
+package ru.skillbranch.sbdelivery.auth.recovery.step3.model
+
+import ru.skillbranch.sbdelivery.common.viewModel.BaseViewModelWithState
+import ru.skillbranch.sbdelivery.utils.rx.Schedulers
+
+/**
+ * Created by Anna Shabaeva on 07.07.2020
+ */
+
+class RecoveryThirdStepViewModel (
+    private val schedulers: Schedulers
+) : BaseViewModelWithState() {
+
+}

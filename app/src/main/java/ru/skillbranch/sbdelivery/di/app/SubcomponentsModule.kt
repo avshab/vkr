@@ -5,6 +5,15 @@ import dagger.android.ContributesAndroidInjector
 import ru.skillbranch.sbdelivery.auth.login.di.LoginModule
 import ru.skillbranch.sbdelivery.auth.login.di.LoginScope
 import ru.skillbranch.sbdelivery.auth.login.view.LoginFragment
+import ru.skillbranch.sbdelivery.auth.recovery.step1.di.RecoveryFirstStepModule
+import ru.skillbranch.sbdelivery.auth.recovery.step1.di.RecoveryFirstStepScope
+import ru.skillbranch.sbdelivery.auth.recovery.step1.view.RecoveryFirstStepFragment
+import ru.skillbranch.sbdelivery.auth.recovery.step2.di.RecoverySecondStepModule
+import ru.skillbranch.sbdelivery.auth.recovery.step2.di.RecoverySecondStepScope
+import ru.skillbranch.sbdelivery.auth.recovery.step2.view.RecoverySecondStepFragment
+import ru.skillbranch.sbdelivery.auth.recovery.step3.di.RecoveryThirdStepModule
+import ru.skillbranch.sbdelivery.auth.recovery.step3.di.RecoveryThirdStepScope
+import ru.skillbranch.sbdelivery.auth.recovery.step3.view.RecoveryThirdStepFragment
 import ru.skillbranch.sbdelivery.auth.registration.di.RegistrationModule
 import ru.skillbranch.sbdelivery.auth.registration.di.RegistrationScope
 import ru.skillbranch.sbdelivery.auth.registration.view.RegistrationFragment
@@ -51,4 +60,16 @@ abstract class SubcomponentsModule {
     @RegistrationScope
     @ContributesAndroidInjector(modules = [RegistrationModule::class])
     abstract fun buildRegistrationFragment(): RegistrationFragment
+
+    @RecoveryFirstStepScope
+    @ContributesAndroidInjector(modules = [RecoveryFirstStepModule::class])
+    abstract fun buildRecoveryFirstStepFragment(): RecoveryFirstStepFragment
+
+    @RecoverySecondStepScope
+    @ContributesAndroidInjector(modules = [RecoverySecondStepModule::class])
+    abstract fun buildRecoverySecondStepFragment(): RecoverySecondStepFragment
+
+    @RecoveryThirdStepScope
+    @ContributesAndroidInjector(modules = [RecoveryThirdStepModule::class])
+    abstract fun buildRecoveryThirdStepFragment(): RecoveryThirdStepFragment
 }
