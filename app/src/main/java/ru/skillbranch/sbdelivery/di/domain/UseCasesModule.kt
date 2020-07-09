@@ -45,4 +45,13 @@ class UseCasesModule {
 
     @Provides
     fun provideRegisterUseCases(loginGateway: LoginGateway) = RegisterUseCases(gateway = loginGateway)
+
+    @Provides
+    fun provideRecoveryFirstStepUseCase(loginGateway: LoginGateway) = RecoveryFirstStepUseCase(gateway = loginGateway)
+
+    @Provides
+    fun provideRecoverySecondStepUseCase(loginGateway: LoginGateway) = RecoverySecondStepUseCase(gateway = loginGateway)
+
+    @Provides
+    fun provideRecoveryThirdStepUseCase(loginGateway: LoginGateway) = RecoveryThirdStepUseCase(gateway = loginGateway)
 }

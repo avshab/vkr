@@ -3,9 +3,7 @@ package ru.skillbranch.sbdelivery.data.auth.gateways
 import io.reactivex.Observable
 import io.reactivex.Single
 import retrofit2.Response
-import ru.skillbranch.sbdelivery.data.auth.api.AuthApiService
-import ru.skillbranch.sbdelivery.data.auth.api.LoginRequestBody
-import ru.skillbranch.sbdelivery.data.auth.api.RegisterRequestBody
+import ru.skillbranch.sbdelivery.data.auth.api.*
 import ru.skillbranch.sbdelivery.data.auth.model.LoginResultResponseBody
 import ru.skillbranch.sbdelivery.domain.auth.gateway.LoginGateway
 import ru.skillbranch.sbdelivery.domain.auth.model.AuthModel
@@ -69,15 +67,15 @@ class LoginGatewayImpl(
             .map {
                 it.body()
             }.map {
-            LoginModel(
-                id = it.id,
-                firstName = it.firstName,
-                lastName = it.lastName,
-                email = it.email,
-                accessToken = it.accessToken,
-                refreshToken = it.refreshToken
-            )
-        }
+                LoginModel(
+                    id = it.id,
+                    firstName = it.firstName,
+                    lastName = it.lastName,
+                    email = it.email,
+                    accessToken = it.accessToken,
+                    refreshToken = it.refreshToken
+                )
+            }
             .doOnSuccess(::saveUserAuth).doOnSuccess(::saveUserData)
     }
 
@@ -123,6 +121,37 @@ class LoginGatewayImpl(
             .map(UserAuthDbDto::isNotEmpty)
     }
 
+    override fun recoveryFirstStep(email: String): Single<Any> {
+        return authApiService.recoveryEmail(
+            RecoveryEmailBody(email)
+        ).map {
+            it.body()
+        }
+    }
+
+    override fun recoverySecondStep(email: String, code: String): Single<Any> {
+        return Single.just(
+            RecoveryCodeBody(
+                email = email,
+                code = code
+            )
+        ).flatMap {
+            authApiService.recoveryCode(it)
+        }.map { it.body() }
+    }
+
+    override fun recoveryThirdStep(email: String, code: String, password: String): Single<Any> {
+        return Single.just(
+            RecoveryPasswordBody(
+                email = email,
+                code = code,
+                password = password
+            )
+        ).flatMap {
+            authApiService.recoveryPassword(it)
+        }.map { it.body() }
+    }
+
 
 //    override fun refreshUserAuth(): Single<LoginModel> {
 //        return userAuthStorage
@@ -138,4 +167,6 @@ class LoginGatewayImpl(
 //            .unwrapOptionalOrThrow()
 //            .doOnSuccess(::updateUserAuth)
 //    }
+
+
 }

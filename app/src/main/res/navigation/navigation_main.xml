@@ -64,7 +64,9 @@
         tools:layout="@layout/fragment_password_recovery_step_1">
         <action
             android:id="@+id/action_recoveryFirstStepFragment_to_recoverySecondStepFragment"
-            app:destination="@id/recoverySecondStepFragment" />
+            app:destination="@id/recoverySecondStepFragment"
+            app:popUpTo="@id/recoveryFirstStepFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
@@ -74,12 +76,20 @@
         tools:layout="@layout/fragment_password_recovery_step_2">
         <action
             android:id="@+id/action_recoverySecondStepFragment_to_recoveryThirdStepFragment"
-            app:destination="@id/recoveryThirdStepFragment" />
+            app:destination="@id/recoveryThirdStepFragment"
+            app:popUpTo="@id/recoverySecondStepFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
         android:id="@+id/recoveryThirdStepFragment"
         android:name="ru.skillbranch.sbdelivery.auth.recovery.step3.view.RecoveryThirdStepFragment"
         android:label="RecoveryThirdStepFragment"
-        tools:layout="@layout/fragment_password_recovery_step_3"/>
+        tools:layout="@layout/fragment_password_recovery_step_3">
+        <action
+            android:id="@+id/action_recoveryThirdStepFragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment"
+            app:popUpTo="@id/recoveryThirdStepFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

@@ -4,6 +4,7 @@ import io.reactivex.disposables.Disposable
 import ru.skillbranch.sbdelivery.utils.rx.Schedulers
 import ru.skillbranch.sbdelivery.common.viewModel.BaseViewModelWithState
 import ru.skillbranch.sbdelivery.common.viewModel.ViewModelState
+import ru.skillbranch.sbdelivery.domain.auth.model.AuthModel
 import ru.skillbranch.sbdelivery.domain.auth.usecases.LoginUseCases
 import ru.skillbranch.sbdelivery.utils.exceptions.EMPTY_STRING
 import ru.skillbranch.sbdelivery.utils.viewModel.BehaviorState
@@ -23,9 +24,12 @@ class LoginViewModel(private val schedulers: Schedulers, private val loginUseCas
         loginDisposable?.dispose()
         loginDisposable =
             loginUseCases.build(email = "rad@yandex.com", password = "Test12345")
-                .subscribeOn(schedulers.io()).observeOn(schedulers.ui()).subscribe({
-                    stateMutableLiveData.value = ViewModelState.Success(emptyList())
-                }, ::handleError).untilCleared()
+                .subscribeOn(schedulers.io())
+                .observeOn(schedulers.ui())
+                .subscribe(
+                    ::handleResult,
+                    ::handleError
+                ).untilCleared()
     }
 
     fun login() {
@@ -35,8 +39,15 @@ class LoginViewModel(private val schedulers: Schedulers, private val loginUseCas
                 email = userEmailInputState.value,
                 password = userPasswordInputState.value
             )
-                .subscribeOn(schedulers.io()).observeOn(schedulers.ui()).subscribe({
-                    stateMutableLiveData.value = ViewModelState.Success(emptyList())
-                }, ::handleError).untilCleared()
+                .subscribeOn(schedulers.io())
+                .observeOn(schedulers.ui())
+                .subscribe(
+                    ::handleResult,
+                    ::handleError
+                ).untilCleared()
+    }
+
+    private fun handleResult(result: AuthModel) {
+        stateMutableLiveData.value = ViewModelState.Success(emptyList())
     }
 }

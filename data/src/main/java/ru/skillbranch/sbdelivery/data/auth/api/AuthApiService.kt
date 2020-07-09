@@ -21,5 +21,19 @@ interface AuthApiService {
         @Body body: RegisterRequestBody
     ): Single<Response<LoginResultResponseBody>>
 
+    @POST("auth/recovery/email")
+    fun recoveryEmail(
+        @Body body: RecoveryEmailBody
+    ): Single<Response<Any>>
+
+    @POST("auth/recovery/code")
+    fun recoveryCode(
+        @Body body: RecoveryCodeBody
+    ): Single<Response<Any>>
+
+    @POST("auth/recovery/password")
+    fun recoveryPassword(
+        @Body body: RecoveryPasswordBody
+    ): Single<Response<Any>>
 }
 

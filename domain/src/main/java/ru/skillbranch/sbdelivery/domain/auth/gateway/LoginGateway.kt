@@ -20,4 +20,10 @@ interface LoginGateway {
 
     fun isUserAuthorized(): Single<Boolean>
 
+    fun recoveryFirstStep(email: String): Single<Any>
+
+    fun recoverySecondStep(email: String, code: String): Single<Any>
+
+    fun recoveryThirdStep(email: String, code: String, password: String): Single<Any>
+
 }
