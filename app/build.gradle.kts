@@ -127,4 +127,7 @@ dependencies {
     implementation(Tools.OKHTTP_LOGGER) {
         exclude(group = "org.json", module = "json")
     }
+
+    implementation(Glide.LIBRARY)
+    implementation(Glide.COMPILER)
 }

@@ -39,7 +39,7 @@ class RecoverySecondStepViewModel(
             ).untilCleared()
     }
 
-    private fun handleResult(result: Any) {
+    private fun handleResult() {
         stateMutableLiveData.value = ViewModelState.Success(emptyList())
     }
 }

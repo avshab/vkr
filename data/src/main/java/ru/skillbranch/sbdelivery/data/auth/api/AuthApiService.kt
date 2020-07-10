@@ -1,5 +1,6 @@
 package ru.skillbranch.sbdelivery.data.auth.api
 
+import io.reactivex.Completable
 import io.reactivex.Single
 import retrofit2.http.Body
 import retrofit2.http.POST
@@ -24,12 +25,12 @@ interface AuthApiService {
     @POST("auth/recovery/email")
     fun recoveryEmail(
         @Body body: RecoveryEmailBody
-    ): Single<Response<Any>>
+    ): Completable
 
     @POST("auth/recovery/code")
     fun recoveryCode(
         @Body body: RecoveryCodeBody
-    ): Single<Response<Any>>
+    ): Completable
 
     @POST("auth/recovery/password")
     fun recoveryPassword(

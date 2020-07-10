@@ -17,4 +17,6 @@
     
     <color name="color_hint">#B3BFCF</color>
     <color name="color_border">#33FFFFFF</color>
+
+    <color name="color_second_accent">#FEC90D</color>
 </resources>

@@ -7,6 +7,8 @@ import ru.skillbranch.sbdelivery.domain.auth.gateway.LogoutGateway
 import ru.skillbranch.sbdelivery.domain.auth.usecases.*
 import ru.skillbranch.sbdelivery.domain.dashboard.gateways.DashboardGateway
 import ru.skillbranch.sbdelivery.domain.dashboard.usecases.GetDashboardModelUseCases
+import ru.skillbranch.sbdelivery.domain.menu.gateways.MenuGateway
+import ru.skillbranch.sbdelivery.domain.menu.usecases.GetMenuUseCases
 import ru.skillbranch.sbdelivery.domain.profile.gateways.ProfileGateway
 import ru.skillbranch.sbdelivery.domain.profile.usecases.GetAndUpdateProfileUseCases
 
@@ -54,4 +56,7 @@ class UseCasesModule {
 
     @Provides
     fun provideRecoveryThirdStepUseCase(loginGateway: LoginGateway) = RecoveryThirdStepUseCase(gateway = loginGateway)
+
+    @Provides
+    fun provideGetMenuUseCases(gateway: MenuGateway) = GetMenuUseCases(gateway = gateway)
 }

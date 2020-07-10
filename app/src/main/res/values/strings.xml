@@ -51,6 +51,7 @@
     <string name="dashboard_best_section">Лучшее</string>
     <string name="dashboard_popular_section">Популярное</string>
     <string name="dashboard_all_items">См. все</string>
+    <string name="dashboard_badge">АКЦИЯ</string>
     <!--end region-->
 
     <!--region zeroData-->

@@ -1,5 +1,6 @@
 package ru.skillbranch.sbdelivery.domain.auth.gateway
 
+import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Single
 import ru.skillbranch.sbdelivery.domain.auth.model.AuthModel
@@ -20,9 +21,9 @@ interface LoginGateway {
 
     fun isUserAuthorized(): Single<Boolean>
 
-    fun recoveryFirstStep(email: String): Single<Any>
+    fun recoveryFirstStep(email: String): Completable
 
-    fun recoverySecondStep(email: String, code: String): Single<Any>
+    fun recoverySecondStep(email: String, code: String): Completable
 
     fun recoveryThirdStep(email: String, code: String, password: String): Single<Any>
 

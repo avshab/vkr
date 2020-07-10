@@ -1,10 +1,11 @@
 package ru.skillbranch.sbdelivery.menu.model
 
-import androidx.lifecycle.MutableLiveData
-import ru.skillbranch.sbdelivery.common.viewModel.BaseViewModel
+import io.reactivex.disposables.Disposable
+import ru.skillbranch.sbdelivery.common.viewModel.BaseViewModelWithState
 import ru.skillbranch.sbdelivery.common.viewModel.ViewModelState
+import ru.skillbranch.sbdelivery.domain.menu.model.CategoryModel
+import ru.skillbranch.sbdelivery.domain.menu.usecases.GetMenuUseCases
 import ru.skillbranch.sbdelivery.menu.view.MenuCellsBuilder
-import ru.skillbranch.sbdelivery.utils.livedata.asLiveData
 import ru.skillbranch.sbdelivery.utils.rx.Schedulers
 
 /**
@@ -13,21 +14,32 @@ import ru.skillbranch.sbdelivery.utils.rx.Schedulers
 
 class MenuViewModel(
     private val schedulers: Schedulers,
-    private val builder: MenuCellsBuilder
-) : BaseViewModel() {
+    private val builder: MenuCellsBuilder,
+    private val getMenuUseCases: GetMenuUseCases
+) : BaseViewModelWithState() {
 
-    private val stateMutableLiveData = MutableLiveData<ViewModelState>()
-    val stateLiveData = stateMutableLiveData.asLiveData
+    private var dataDisposable: Disposable? = null
 
     init {
         loadData()
     }
 
-    fun loadData() {
-        handleResult()
+    private fun loadData() {
+        dataDisposable?.dispose()
+        dataDisposable = getMenuUseCases
+            .buildSingle()
+            .subscribeOn(schedulers.io())
+            .observeOn(schedulers.ui())
+            .doOnSubscribe { stateMutableLiveData.value = ViewModelState.Loading }
+            .subscribe(
+                ::handleResult,
+                ::handleError
+            )
+            .untilCleared()
+
     }
 
-    private fun handleResult() {
-        stateMutableLiveData.value = ViewModelState.Success(builder.build())
+    private fun handleResult(data: List<CategoryModel>) {
+        stateMutableLiveData.value = ViewModelState.Success(builder.build(data))
     }
 }

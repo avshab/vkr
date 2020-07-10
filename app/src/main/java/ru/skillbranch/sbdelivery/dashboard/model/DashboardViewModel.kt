@@ -42,7 +42,9 @@ class DashboardViewModel(
 
     private fun loadData() {
         dataDisposable?.dispose()
-        dataDisposable = getDashboardModelUseCases.buildSingle().subscribeOn(schedulers.io())
+        dataDisposable = getDashboardModelUseCases
+            .buildSingle()
+            .subscribeOn(schedulers.io())
             .observeOn(schedulers.ui())
             .doOnSubscribe { stateMutableLiveData.value = ViewModelState.Loading }
             .subscribe(

@@ -23,14 +23,14 @@ class HorizontalDishesRVCellDelegate(/*private val cardsDelegate: DishCardCellDe
                 adapter = cardAdapter
                 layoutManager = LinearLayoutManager(horizontalRV.context, LinearLayoutManager.HORIZONTAL, false)
             }
-            val jj = bindCells(cell.data)
             cardAdapter.items = bindCells(cell.data)
         }
     }
 
     private fun bindCells(list: List<DishModel>): List<BaseCell> {
         return list.map {
-            DishCardCell(it.id, it.price, it.name)
+            //TODO like from storage
+            DishCardCell(it.id, it.price, it.name, it.image, it.likes > 0, it.oldPrice != null)
         }
     }
 }

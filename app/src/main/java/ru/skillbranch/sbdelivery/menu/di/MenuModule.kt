@@ -2,6 +2,7 @@ package ru.skillbranch.sbdelivery.menu.di
 
 import dagger.Module
 import dagger.Provides
+import ru.skillbranch.sbdelivery.domain.menu.usecases.GetMenuUseCases
 import ru.skillbranch.sbdelivery.menu.model.MenuViewModel
 import ru.skillbranch.sbdelivery.menu.view.MenuCellsBuilder
 import ru.skillbranch.sbdelivery.menu.view.MenuFragment
@@ -21,12 +22,14 @@ class MenuModule {
     fun provideMenuViewModel(
         fragment: MenuFragment,
         schedulers: Provider<Schedulers>,
-        cellsBuilder: Provider<MenuCellsBuilder>
+        cellsBuilder: Provider<MenuCellsBuilder>,
+        getMenuUseCases: Provider<GetMenuUseCases>
     ): MenuViewModel {
         return fragment.createViewModel {
             MenuViewModel(
                 schedulers = schedulers.get(),
-                builder = cellsBuilder.get()
+                builder = cellsBuilder.get(),
+                getMenuUseCases = getMenuUseCases.get()
             )
         }
     }

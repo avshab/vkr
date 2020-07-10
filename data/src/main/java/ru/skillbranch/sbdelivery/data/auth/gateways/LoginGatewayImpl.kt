@@ -1,5 +1,6 @@
 package ru.skillbranch.sbdelivery.data.auth.gateways
 
+import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Single
 import retrofit2.Response
@@ -121,23 +122,26 @@ class LoginGatewayImpl(
             .map(UserAuthDbDto::isNotEmpty)
     }
 
-    override fun recoveryFirstStep(email: String): Single<Any> {
+    override fun recoveryFirstStep(email: String): Completable {
         return authApiService.recoveryEmail(
             RecoveryEmailBody(email)
-        ).map {
-            it.body()
-        }
+        )
     }
 
-    override fun recoverySecondStep(email: String, code: String): Single<Any> {
-        return Single.just(
+    override fun recoverySecondStep(email: String, code: String): Completable {
+//        return Single.just(
+//            RecoveryCodeBody(
+//                email = email,
+//                code = code
+//            )
+//        ).flatMap {
+//            authApiService.recoveryCode(it)
+//        }
+        return authApiService.recoveryCode(
             RecoveryCodeBody(
-                email = email,
-                code = code
+                email = email, code = code
             )
-        ).flatMap {
-            authApiService.recoveryCode(it)
-        }.map { it.body() }
+        )
     }
 
     override fun recoveryThirdStep(email: String, code: String, password: String): Single<Any> {

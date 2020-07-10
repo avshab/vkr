@@ -34,7 +34,11 @@
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">#1A1A21</item>
         <item name="android:fontFamily">@font/roboto</item>
+    </style>
 
+    <style name="TextBadge" parent="TextBody">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">#1A1A21</item>
     </style>
 
     <style name="TextHint">

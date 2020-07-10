@@ -10,6 +10,7 @@
     android:foreground="@drawable/bg_list_cell_selection"
     app:cardBackgroundColor="@color/color_primary"
     app:cardCornerRadius="16dp"
+    android:layout_margin="7dp"
     app:cardElevation="@dimen/card_elevation">
 
     <androidx.constraintlayout.widget.ConstraintLayout

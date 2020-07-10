@@ -2,6 +2,8 @@ package ru.skillbranch.sbdelivery.auth.recovery.step2.view
 
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.EditorInfo
+import android.widget.TextView
 import kotlinx.android.synthetic.main.fragment_password_recovery_step_2.*
 import ru.skillbranch.sbdelivery.common.view.BaseFragment
 import ru.skillbranch.sbdelivery.R
@@ -42,21 +44,32 @@ class RecoverySecondStepFragment : BaseFragment() {
     private fun setupInputViews() {
         box1EditText.onTextChange { txt ->
             viewModel.box1State.accept(txt)
+            if (!txt.isNullOrBlank()) {
+                box1EditText.onEditorAction(EditorInfo.IME_ACTION_NEXT)
+            }
         }
 
         box2EditText.onTextChange { txt ->
             viewModel.box2State.accept(txt)
+            if (!txt.isNullOrBlank()) {
+                box2EditText.onEditorAction(EditorInfo.IME_ACTION_NEXT)
+            }
         }
 
         box3EditText.onTextChange { txt ->
             viewModel.box3State.accept(txt)
+            if (!txt.isNullOrBlank()) {
+                box3EditText.onEditorAction(EditorInfo.IME_ACTION_NEXT)
+            }
         }
 
         box4EditText.onTextChange { txt ->
             viewModel.box4State.accept(txt)
 
-            if (viewModel.box1State.value.isNullOrBlank() && viewModel.box2State.value.isNullOrBlank() && viewModel.box3State.value.isNullOrBlank())
+            if (!viewModel.box1State.value.isNullOrBlank() && !viewModel.box2State.value.isNullOrBlank() && !viewModel.box3State.value.isNullOrBlank() && !txt.isNullOrBlank()) {
+                box3EditText.onEditorAction(EditorInfo.IME_ACTION_DONE)
                 viewModel.sendCode()
+            }
         }
 
     }
@@ -70,6 +83,17 @@ class RecoverySecondStepFragment : BaseFragment() {
                     args.toBundle<RecoveryThirdStepFragment>()
                 )
             }
+        }
+    }
+}
+
+inline fun TextView.onEditorAction(action: Int, crossinline block: () -> Unit) {
+    setOnEditorActionListener { _, actionId, _ ->
+        if (actionId == action) {
+            block()
+            true
+        } else {
+            false
         }
     }
 }
