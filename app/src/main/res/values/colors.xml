@@ -3,6 +3,7 @@
     <color name="color_primary">#24222C</color>
     <color name="color_primary_dark">#24222C</color>
     <color name="color_accent">#FF6F14</color>
+    <color name="black">#000000</color>
 
     <color name="color_surface">#1A1A21</color>
     <color name="color_on_surface">#DBFFFFFF</color>

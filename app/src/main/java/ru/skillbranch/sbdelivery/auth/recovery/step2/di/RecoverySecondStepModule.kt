@@ -19,7 +19,6 @@ import javax.inject.Provider
 @Module
 class RecoverySecondStepModule {
 
-
     @Provides
     @RecoverySecondStepScope
     fun provideRecoverySecondStepArgs(

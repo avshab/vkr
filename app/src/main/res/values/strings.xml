@@ -60,4 +60,13 @@
     <string name="zero_cell_no_data_content">В настоящий момент данный раздел пуст</string>
     <string name="zero_cell_error_no_data_content">Произошла ошибка во время загрузки данных, попробуйте повторить позже.</string>
     <!--end region-->
+
+    <!--region dish-->
+    <string name="dish_add">Добавить в корзину</string>
+    <string name="dish_review">Отзывы</string>
+    <string name="dish_add_review">Добавить отзыв</string>
+    <string name="dish_plus">+</string>
+    <string name="dish_minus">-</string>
+    <string name="dish_zero">0</string>
+    <!--end region-->
 </resources>

@@ -6,19 +6,26 @@ import ru.skillbranch.sbdelivery.common.view.zerodata.ZeroDataCellDelegate
 import ru.skillbranch.sbdelivery.dashboard.view.delegates.DashboardAdCellDelegate
 import ru.skillbranch.sbdelivery.dashboard.view.delegates.DashboardSubtitleCellDelegate
 import ru.skillbranch.sbdelivery.dashboard.view.delegates.HorizontalDishesRVCellDelegate
+import ru.skillbranch.sbdelivery.domain.dashboard.model.DishModel
 
 /**
  * Created by Anna Shabaeva on 19.06.2020
  */
 
 class DashboardAdapter(
-
+    onDishClicked: (data: DishModel) -> Unit,
+    addToBasket: () -> Unit,
+    likeItem: () -> Unit
 ) : BaseCellDelegatcionAdapter(BaseDiffCallback()) {
 
     init {
         with(delegatesManager) {
             addDelegate(
-                HorizontalDishesRVCellDelegate()
+                HorizontalDishesRVCellDelegate(
+                    onDishClicked = onDishClicked,
+                    addToBasket = addToBasket,
+                    likeItem = likeItem
+                )
             )
 
             addDelegate(ZeroDataCellDelegate())

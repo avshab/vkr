@@ -14,7 +14,7 @@ class HorizontalDishesRVCell(val data: List<DishModel>) : IdentifiableCell<Strin
         const val VIEW_TYPE: Int = R.layout.cell_horizontal_rv
     }
 
-    override val cellId: String = data.joinToString { it.id.toString() }
+    override val cellId: String = data.joinToString { it.id }
 
     override val cellLayout: Int = VIEW_TYPE
 

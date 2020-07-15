@@ -13,6 +13,11 @@
         <item name="android:textColor">#FF6F14</item>
     </style>
 
+    <style name="TextBodyAccentNormal" parent="TextBody">
+        <item name="android:textColor">#FF6F14</item>
+        <item name="android:fontFamily">@font/roboto</item>
+    </style>
+
     <style name="TextTitle" parent="TextBody">
         <item name="android:textSize">18sp</item>
     </style>
@@ -48,4 +53,13 @@
         <item name="android:textSize">13sp</item>
         <item name="android:textColor">#B3BFCF</item>
     </style>
+
+    <style name="TextBigTitle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
 </resources>

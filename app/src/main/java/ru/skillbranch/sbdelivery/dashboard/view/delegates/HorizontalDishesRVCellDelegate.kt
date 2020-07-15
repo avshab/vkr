@@ -13,15 +13,24 @@ import ru.skillbranch.sbdelivery.domain.dashboard.model.DishModel
 /**
  * Created by Anna Shabaeva on 19.06.2020
  */
-class HorizontalDishesRVCellDelegate(/*private val cardsDelegate: DishCardCellDelegate*/) :
+class HorizontalDishesRVCellDelegate(
+    private val onDishClicked: (data: DishModel) -> Unit,
+    private val addToBasket: () -> Unit,
+    private val likeItem: () -> Unit
+) :
     BaseCellDelegate<HorizontalDishesRVCell>(HorizontalDishesRVCell.VIEW_TYPE) {
 
     override fun onBindCell(cell: HorizontalDishesRVCell, viewHolder: BaseCellViewHolder) {
         with(viewHolder.itemView) {
-            val cardAdapter = DishCardAdapter()
+            val cardAdapter = DishCardAdapter(
+                onDishClicked = onDishClicked,
+                addToBasket = addToBasket,
+                likeItem = likeItem
+            )
             horizontalRV.apply {
                 adapter = cardAdapter
-                layoutManager = LinearLayoutManager(horizontalRV.context, LinearLayoutManager.HORIZONTAL, false)
+                layoutManager =
+                    LinearLayoutManager(horizontalRV.context, LinearLayoutManager.HORIZONTAL, false)
             }
             cardAdapter.items = bindCells(cell.data)
         }
@@ -30,7 +39,7 @@ class HorizontalDishesRVCellDelegate(/*private val cardsDelegate: DishCardCellDe
     private fun bindCells(list: List<DishModel>): List<BaseCell> {
         return list.map {
             //TODO like from storage
-            DishCardCell(it.id, it.price, it.name, it.image, it.likes > 0, it.oldPrice != null)
+            DishCardCell(data = it, like = it.likes > 0, isDiscount = it.oldPrice != null)
         }
     }
 }

@@ -28,6 +28,9 @@
         <action
             android:id="@+id/action_dashboardFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_dishFragment"
+            app:destination="@id/dishFragment" />
     </fragment>
 
     <fragment
@@ -92,4 +95,9 @@
             app:popUpTo="@id/recoveryThirdStepFragment"
             app:popUpToInclusive="true" />
     </fragment>
+    <fragment
+        android:id="@+id/dishFragment"
+        android:name="ru.skillbranch.sbdelivery.dish.view.DishFragment"
+        android:label="DishFragment"
+        tools:layout="@layout/fragment_dish"/>
 </navigation>

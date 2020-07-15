@@ -40,7 +40,6 @@ class RecoverySecondStepFragment : BaseFragment() {
 
     }
 
-
     private fun setupInputViews() {
         box1EditText.onTextChange { txt ->
             viewModel.box1State.accept(txt)

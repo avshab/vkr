@@ -1,8 +1,12 @@
 package ru.skillbranch.sbdelivery.domain.dashboard.model
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
 /**
  * Created by Anna Shabaeva on 07.06.2020
  */
+@Parcelize
 data class DishModel(
     val id: String,
     val name: String,
@@ -17,4 +21,4 @@ data class DishModel(
     val active: Boolean,
     val createdAt: Long,
     val updatedAt: Long
-)
+) : Parcelable

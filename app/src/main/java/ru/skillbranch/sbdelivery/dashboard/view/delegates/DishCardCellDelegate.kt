@@ -12,26 +12,39 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.DownsampleStrategy
 import com.bumptech.glide.request.RequestOptions
 import ru.skillbranch.sbdelivery.R
+import ru.skillbranch.sbdelivery.domain.dashboard.model.DishModel
 import ru.skillbranch.sbdelivery.utils.extensions.getColorInt
 import ru.skillbranch.sbdelivery.utils.extensions.makeVisibleOrGone
+import ru.skillbranch.sbdelivery.utils.extensions.onClick
 
 /**
  * Created by Anna Shabaeva on 19.06.2020
  */
 
-class DishCardCellDelegate :
+class DishCardCellDelegate(
+    private val onDishClicked: (data: DishModel) -> Unit,
+    private val addToBasket: () -> Unit,
+    private val likeItem: () -> Unit
+) :
     BaseCellDelegate<DishCardCell>(DishCardCell.VIEW_TYPE) {
+
+    override fun onViewHolderCreated(viewHolder: BaseCellViewHolder) {
+    }
 
     override fun onBindCell(cell: DishCardCell, viewHolder: BaseCellViewHolder) {
         with(viewHolder.itemView) {
 
-            nameTextView.text = cell.name
-            priceTextView.text = cell.price.toString() + WHITESPACE + RUB_SYMBOL
+            onClick {
+                onDishClicked(cell.data)
+            }
+
+            nameTextView.text = cell.data.name
+            priceTextView.text = cell.data.price.toString() + WHITESPACE + RUB_SYMBOL
 
 
             Glide
                 .with(dishImageView.context)
-                .load(cell.imgUrl)
+                .load(cell.data.image)
                 .apply(
                     RequestOptions
                         .bitmapTransform(CenterCrop())

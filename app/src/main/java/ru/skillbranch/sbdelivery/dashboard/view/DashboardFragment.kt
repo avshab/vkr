@@ -11,7 +11,11 @@ import ru.skillbranch.sbdelivery.common.view.BaseFragment
 import ru.skillbranch.sbdelivery.common.viewModel.ViewModelState
 import ru.skillbranch.sbdelivery.dashboard.model.DashboardViewModel
 import ru.skillbranch.sbdelivery.dashboard.view.adapter.DashboardAdapter
+import ru.skillbranch.sbdelivery.dish.view.DishArgs
+import ru.skillbranch.sbdelivery.dish.view.DishFragment
+import ru.skillbranch.sbdelivery.domain.dashboard.model.DishModel
 import ru.skillbranch.sbdelivery.utils.extensions.arguments
+import ru.skillbranch.sbdelivery.utils.extensions.toBundle
 import javax.inject.Inject
 
 /**
@@ -28,7 +32,11 @@ class DashboardFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        dashboardAdapter = DashboardAdapter()
+        dashboardAdapter = DashboardAdapter(
+            onDishClicked = ::onDishClicked,
+            likeItem = ::likeItem,
+            addToBasket = ::addToBasket
+        )
         dashboardRecyclerView.apply {
             adapter = dashboardAdapter
             layoutManager = LinearLayoutManager(context)
@@ -60,6 +68,24 @@ class DashboardFragment : BaseFragment() {
             is ViewModelState.Success -> dashboardAdapter.items = state.list
             is ViewModelState.Error -> dashboardAdapter.items = state.zeroCell
         }
+    }
+
+    private fun onDishClicked(dishModel: DishModel) {
+        val args = DishArgs(dishModel = dishModel)
+                navController.navigate(
+                    R.id.dishFragment,
+                    args.toBundle<DishFragment>()
+                )
+    }
+
+
+    private fun likeItem() {
+
+    }
+
+
+    private fun addToBasket() {
+
     }
 
 }

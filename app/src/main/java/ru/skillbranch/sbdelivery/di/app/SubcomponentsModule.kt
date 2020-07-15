@@ -20,6 +20,9 @@ import ru.skillbranch.sbdelivery.auth.registration.view.RegistrationFragment
 import ru.skillbranch.sbdelivery.dashboard.di.DashboardModule
 import ru.skillbranch.sbdelivery.dashboard.di.DashboardScope
 import ru.skillbranch.sbdelivery.dashboard.view.DashboardFragment
+import ru.skillbranch.sbdelivery.dish.di.DishModule
+import ru.skillbranch.sbdelivery.dish.di.DishScope
+import ru.skillbranch.sbdelivery.dish.view.DishFragment
 import ru.skillbranch.sbdelivery.launch.di.LaunchModule
 import ru.skillbranch.sbdelivery.launch.di.LaunchScope
 import ru.skillbranch.sbdelivery.launch.view.LaunchFragment
@@ -72,4 +75,8 @@ abstract class SubcomponentsModule {
     @RecoveryThirdStepScope
     @ContributesAndroidInjector(modules = [RecoveryThirdStepModule::class])
     abstract fun buildRecoveryThirdStepFragment(): RecoveryThirdStepFragment
+
+    @DishScope
+    @ContributesAndroidInjector(modules = [DishModule::class])
+    abstract fun buildDishFragment(): DishFragment
 }
