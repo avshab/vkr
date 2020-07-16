@@ -1,6 +1,5 @@
 package ru.skillbranch.sbdelivery.common.viewModel
 
-import android.util.Log
 import androidx.annotation.CallSuper
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -37,8 +36,7 @@ abstract class BaseViewModelWithState : BaseViewModel() {
     val stateLiveData = stateMutableLiveData.asLiveData
 
 
-    protected fun handleError(throwable: Throwable) {
-        Log.i("--TAG", "handleError")
+    open fun handleError(throwable: Throwable) {
         stateMutableLiveData.value = ViewModelState.Error(
             zeroCell = listOf(zeroDataFactory.buildZeroDataErrorCell(error = throwable)),
             message = throwable.message.defaultIfNull

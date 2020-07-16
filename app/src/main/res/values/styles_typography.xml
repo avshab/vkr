@@ -35,6 +35,10 @@
         <item name="android:textColor">#A6A6B2</item>
     </style>
 
+    <style name="TextDescriptionSmall" parent="TextDescription">
+        <item name="android:textSize">12sp</item>
+    </style>
+
     <style name="TextInput" parent="TextBody">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">#1A1A21</item>

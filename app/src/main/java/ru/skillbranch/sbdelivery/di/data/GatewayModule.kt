@@ -10,6 +10,8 @@ import ru.skillbranch.sbdelivery.data.common.api.BaseResponseMapper
 import ru.skillbranch.sbdelivery.data.common.userData.UserDataStorage
 import ru.skillbranch.sbdelivery.data.dashboard.api.DashboardApiService
 import ru.skillbranch.sbdelivery.data.dashboard.gateways.DashboardGatewayImpl
+import ru.skillbranch.sbdelivery.data.dish.api.DishApiService
+import ru.skillbranch.sbdelivery.data.dish.gateways.DishGatewayImpl
 import ru.skillbranch.sbdelivery.data.menu.api.CategoriesApiService
 import ru.skillbranch.sbdelivery.data.menu.gateways.MenuGatewayImpl
 import ru.skillbranch.sbdelivery.data.profile.api.ProfileApiService
@@ -18,6 +20,7 @@ import ru.skillbranch.sbdelivery.di.data.qualifiers.AuthenticationApi
 import ru.skillbranch.sbdelivery.domain.auth.gateway.LoginGateway
 import ru.skillbranch.sbdelivery.domain.auth.gateway.LogoutGateway
 import ru.skillbranch.sbdelivery.domain.dashboard.gateways.DashboardGateway
+import ru.skillbranch.sbdelivery.domain.dish.gateways.DishGateway
 import ru.skillbranch.sbdelivery.domain.menu.gateways.MenuGateway
 import ru.skillbranch.sbdelivery.domain.profile.gateways.ProfileGateway
 
@@ -78,6 +81,15 @@ class GatewayModule {
         apiService: CategoriesApiService,
         mapper: BaseResponseMapper
     ): MenuGateway = MenuGatewayImpl(
+        apiService = apiService,
+        mapper = mapper
+    )
+
+    @Provides
+    fun provideDishGateway(
+        apiService: DishApiService,
+        mapper: BaseResponseMapper
+    ): DishGateway = DishGatewayImpl(
         apiService = apiService,
         mapper = mapper
     )

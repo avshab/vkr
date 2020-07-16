@@ -1,12 +1,10 @@
 package ru.skillbranch.sbdelivery.data.common.api
 
 import retrofit2.Response
-import ru.skillbranch.sbdelivery.utils.exceptions.defaultIfNull
 
 /**
  * Created by Anna Shabaeva on 07.06.2020
  */
-
 
 class BaseResponseMapper(
     private val errorBodyConverter: ResponseErrorBodyConverter

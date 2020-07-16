@@ -68,5 +68,12 @@
     <string name="dish_plus">+</string>
     <string name="dish_minus">-</string>
     <string name="dish_zero">0</string>
+    <string name="dish_badge">АКЦИЯ</string>
+    <!--end region-->
+
+    <!--region review-->
+    <string name="review_title">Оставить отзыв</string>
+    <string name="review_input_hint">Введите отзыв</string>
+    <string name="review_send">Отправить</string>
     <!--end region-->
 </resources>

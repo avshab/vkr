@@ -51,3 +51,12 @@ class LoginViewModel(private val schedulers: Schedulers, private val loginUseCas
         stateMutableLiveData.value = ViewModelState.Success(emptyList())
     }
 }
+//
+//{
+//    "firstName": "Виктор",
+//    "lastName": "Петрович",
+//    "email": "av.shabaeva@severmed.com",
+//    "password": "Test123"
+//}
+
+//email = "rad@yandex.com", password = "Test12345"
