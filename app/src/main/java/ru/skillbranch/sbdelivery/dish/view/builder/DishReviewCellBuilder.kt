@@ -27,6 +27,7 @@ class DishReviewCellBuilder(
         price: Int,
         oldPrice: Int?,
         url: String,
+        rating: String,
         reviews: List<DishReviewModel>
     ): List<BaseCell> {
         val reviewCells = reviews.map { review ->
@@ -49,7 +50,7 @@ class DishReviewCellBuilder(
             )
         )
         if (reviewCells.isNotEmpty()) {
-            result = result + listOf(ReviewHeaderCell())
+            result = result + listOf(ReviewHeaderCell(rating))
         }
         return result + reviewCells
     }

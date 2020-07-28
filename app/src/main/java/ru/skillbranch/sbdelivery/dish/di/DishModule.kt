@@ -52,6 +52,7 @@ class DishModule {
                 price = args.dishModel.price,
                 oldPrice = args.dishModel.oldPrice,
                 url = args.dishModel.image,
+                rating = args.dishModel.rating,
                 cellsBuilder = cellsBuilder,
                 getReviewsForDishUseCase = getReviewsForDishUseCase,
                 sendReviewForDishUseCase = sendReviewForDishUseCase

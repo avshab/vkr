@@ -11,7 +11,7 @@ import ru.skillbranch.sbdelivery.dish.view.delegates.ReviewHeaderCellDelegate
  */
 
 class DishReviewAdapter(
-    private val addToBasket: () -> Unit,
+    private val addToBasket: (count: Int) -> Unit,
     private val addReview: () -> Unit
 ) : BaseCellDelegatcionAdapter(BaseDiffCallback()) {
 

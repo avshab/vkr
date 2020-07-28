@@ -1,6 +1,7 @@
 package ru.skillbranch.sbdelivery.dish.view
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_dish.*
@@ -70,7 +71,9 @@ class DishFragment : BaseFragment(), ReviewDialogFragment.Callback {
         showReviewDialog(RC_REVIEW_DIALOG)
     }
 
-    private fun addToBasket() {
-        viewModel.addToBasket()
+    private fun addToBasket(count: Int) {
+
+        Log.i("--TAG", "add to basket $count")
+        viewModel.addToBasket(count)
     }
 }

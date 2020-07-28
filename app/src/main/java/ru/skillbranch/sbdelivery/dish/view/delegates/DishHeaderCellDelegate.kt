@@ -6,8 +6,9 @@ import ru.skillbranch.sbdelivery.common.view.adapter.viewholders.BaseCellViewHol
 import ru.skillbranch.sbdelivery.dish.view.cells.DishHeaderCell
 import ru.skillbranch.sbdelivery.utils.extensions.makeVisibleOrGone
 import com.bumptech.glide.Glide
+import ru.skillbranch.sbdelivery.utils.extensions.onClick
 
-class DishHeaderCellDelegate(private val addToBasket: () -> Unit) :
+class DishHeaderCellDelegate(private val addToBasket: (count: Int) -> Unit) :
     BaseCellDelegate<DishHeaderCell>(
         DishHeaderCell.VIEW_TYPE
     ) {
@@ -29,6 +30,8 @@ class DishHeaderCellDelegate(private val addToBasket: () -> Unit) :
                         .diskCacheStrategy(com.bumptech.glide.load.engine.DiskCacheStrategy.ALL)
                 )
                 .into(dishImageView)
+
+            addToBasketButton.onClick { addToBasket(counterView.getCounter()) }
 
             badgeTextView.makeVisibleOrGone(cell.isDiscount)
         }

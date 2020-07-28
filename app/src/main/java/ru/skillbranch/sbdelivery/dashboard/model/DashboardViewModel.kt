@@ -40,6 +40,8 @@ class DashboardViewModel(
         authStateDelegate.value = null
     }
 
+    fun reload() = loadData()
+
     private fun loadData() {
         dataDisposable?.dispose()
         dataDisposable = getDashboardModelUseCases

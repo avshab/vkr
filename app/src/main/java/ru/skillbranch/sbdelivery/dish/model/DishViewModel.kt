@@ -21,6 +21,7 @@ class DishViewModel(
     private val price: Int,
     private val oldPrice: Int?,
     private val url: String,
+    private val rating: Double,
     private val cellsBuilder: DishReviewCellBuilder,
     private val getReviewsForDishUseCase: GetReviewsForDishUseCase,
     private val sendReviewForDishUseCase: SendReviewForDishUseCase
@@ -55,7 +56,8 @@ class DishViewModel(
                 price = price,
                 oldPrice = oldPrice,
                 reviews = data,
-                url = url
+                url = url,
+                rating = rating.toString()
             )
         )
     }
@@ -72,7 +74,7 @@ class DishViewModel(
         )
     }
 
-    fun addToBasket() {
+    fun addToBasket(count: Int) {
 
     }
 

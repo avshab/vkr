@@ -14,6 +14,9 @@
         android:background="@color/transparent"
         android:fontFamily="@font/roboto_light"
         android:text="@string/dish_minus"
+        android:clickable="true"
+        android:focusable="true"
+        android:enabled="true"
         android:textColor="@color/color_accent" />
 
     <View
@@ -31,7 +34,7 @@
         android:layout_marginEnd="18dp"
         android:background="@color/transparent"
         android:gravity="center"
-        android:text="@string/dish_zero"
+        android:text="@string/dish_count_default"
         android:textColor="@color/color_accent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -50,6 +53,9 @@
         android:background="@color/transparent"
         android:fontFamily="@font/roboto_light"
         android:text="@string/dish_plus"
+        android:clickable="true"
+        android:focusable="true"
+        android:enabled="true"
         android:textColor="@color/color_accent" />
 
 
