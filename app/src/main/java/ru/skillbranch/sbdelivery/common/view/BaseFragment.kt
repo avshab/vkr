@@ -29,6 +29,7 @@ abstract class BaseFragment : Fragment(), BackAndHomeButtonsHandler {
 
     interface ToolbarHandler {
         fun setVisibility(isVisibly: Boolean)
+        fun setTitle(title: String)
     }
 
     @get:LayoutRes protected abstract val layoutResId: Int
@@ -46,6 +47,10 @@ abstract class BaseFragment : Fragment(), BackAndHomeButtonsHandler {
     private var callback: ToolbarHandler? = null
 
     open val toolbarVisibility = true
+
+    protected fun setToolbarTitle(title: String) {
+        callback?.setTitle(title)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

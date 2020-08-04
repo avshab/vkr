@@ -19,7 +19,9 @@ interface LoginGateway {
 
     fun getUserAuth(): Single<AuthModel>
 
-    fun isUserAuthorized(): Single<Boolean>
+    fun isUserAuthorizedSingle(): Single<Boolean>
+
+    fun isUserAuthorized(): Boolean
 
     fun recoveryFirstStep(email: String): Completable
 

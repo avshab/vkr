@@ -31,10 +31,17 @@ class UseCasesModule {
         LoginUseCases(gateway = loginGateway)
 
     @Provides
+    fun provideIsUserAuthorizedSingleUseCase(loginGateway: LoginGateway) =
+        IsUserAuthorizedSingleUseCase(
+            gateway = loginGateway
+        )
+
+    @Provides
     fun provideIsUserAuthorizedUseCase(loginGateway: LoginGateway) =
         IsUserAuthorizedUseCase(
             gateway = loginGateway
         )
+
 
     @Provides
     fun provideLogoutUseCase(logoutGateway: LogoutGateway) =

@@ -116,11 +116,16 @@ class LoginGatewayImpl(
         )
     }
 
-    override fun isUserAuthorized(): Single<Boolean> {
+    override fun isUserAuthorizedSingle(): Single<Boolean> {
         return userAuthStorage
             .getSingle()
             .map(UserAuthDbDto::isNotEmpty)
     }
+
+    override fun isUserAuthorized(): Boolean {
+        return userAuthStorage.get().isNotEmpty
+    }
+
 
     override fun recoveryFirstStep(email: String): Completable {
         return authApiService.recoveryEmail(

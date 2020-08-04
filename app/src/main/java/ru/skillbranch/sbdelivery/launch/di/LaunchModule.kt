@@ -2,7 +2,7 @@ package ru.skillbranch.sbdelivery.launch.di
 
 import dagger.Module
 import dagger.Provides
-import ru.skillbranch.sbdelivery.domain.auth.usecases.IsUserAuthorizedUseCase
+import ru.skillbranch.sbdelivery.domain.auth.usecases.IsUserAuthorizedSingleUseCase
 import ru.skillbranch.sbdelivery.launch.model.LaunchViewModel
 import ru.skillbranch.sbdelivery.launch.view.LaunchFragment
 import ru.skillbranch.sbdelivery.utils.rx.Schedulers
@@ -21,12 +21,12 @@ class LaunchModule {
     fun provideLaunchViewModel(
         fragment: LaunchFragment,
         schedulers: Provider<Schedulers>,
-        isUserAuthorizedUseCase: Provider<IsUserAuthorizedUseCase>
+        isUserAuthorizedSingleUseCase: Provider<IsUserAuthorizedSingleUseCase>
     ): LaunchViewModel {
         return fragment.createViewModel {
             LaunchViewModel(
                 schedulers = schedulers.get(),
-                isUserAuthorizedUseCase = isUserAuthorizedUseCase.get()
+                isUserAuthorizedSingleUseCase = isUserAuthorizedSingleUseCase.get()
             )
         }
     }

@@ -6,12 +6,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
-import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.view.GravityCompat
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import dagger.android.AndroidInjection
@@ -36,25 +36,38 @@ class MainActivity : AppCompatActivity(), BaseFragment.ToolbarHandler {
 
     private lateinit var userEmailTextView: AppCompatTextView
 
+    private val navController
+        get() = findNavController(R.id.mainNavHostFragment)
+
+    private val navFragmentManager
+        get() = mainNavHostFragment.childFragmentManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppThemeClear)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         AndroidInjection.inject(this)
-        navView.setupWithNavController(navController)
-
         setupToolbar(toolbar)
-        navView.bringToFront()
-        val toggle = ActionBarDrawerToggle(
-            this,
-            drawerLayout,
-            toolbar,
-            R.string.menu_open,
-            R.string.menu_close
+
+        val appBarConfiguration = AppBarConfiguration(
+            topLevelDestinationIds = setOf(
+                R.id.dashboardFragment,
+                R.id.menuFragment,
+                R.id.likeFragment,
+                R.id.basketFragment,
+                R.id.profileFragment,
+                R.id.ordersFragment,
+                R.id.notificationsFragment
+            ), drawerLayout = drawerLayout
         )
-        drawerLayout.addDrawerListener(toggle)
-        toggle.syncState()
+        toolbar.setupWithNavController(navController, appBarConfiguration)
+        NavigationUI.setupWithNavController(navView, navController)
+
         initViews()
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return NavigationUI.navigateUp(navController, drawerLayout)
     }
 
     private fun initViews() {
@@ -71,7 +84,7 @@ class MainActivity : AppCompatActivity(), BaseFragment.ToolbarHandler {
 
     private fun handleState(state: MainViewModelState) {
         Log.i("--TAG", "SET STATE")
-        when(state) {
+        when (state) {
             is MainViewModelState.AuthState -> {
                 userNameTextView.text = state.userName
                 userEmailTextView.text = state.email
@@ -85,26 +98,22 @@ class MainActivity : AppCompatActivity(), BaseFragment.ToolbarHandler {
         }
     }
 
-    private val navController
-        get() = findNavController(R.id.mainNavHostFragment)
-
-    private val navFragmentManager
-        get() = mainNavHostFragment.childFragmentManager
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        NavigationUI.onNavDestinationSelected(item, navController)
+
+        val hh = NavigationUI.onNavDestinationSelected(item, navController)
         return when (item.itemId) {
             android.R.id.home -> {
                 drawerLayout.openDrawer(GravityCompat.START)
                 true
             }
-            else -> super.onOptionsItemSelected(item)
+            else -> {
+                super.onOptionsItemSelected(item)
+            }
         }
     }
 
     override fun navigateUpTo(upIntent: Intent?): Boolean {
         return super.navigateUpTo(upIntent)
-
         Log.i("--TAG", "navigateUpTo")
     }
 
@@ -119,6 +128,10 @@ class MainActivity : AppCompatActivity(), BaseFragment.ToolbarHandler {
     }
 
     override fun setVisibility(isVisibly: Boolean) {
-       toolbar?.makeVisibleOrGone(isVisibly)
+        toolbar?.makeVisibleOrGone(isVisibly)
+    }
+
+    override fun setTitle(title: String) {
+        toolbar?.title = title
     }
 }

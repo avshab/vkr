@@ -23,7 +23,7 @@
     <fragment
         android:id="@+id/dashboardFragment"
         android:name="ru.skillbranch.sbdelivery.dashboard.view.DashboardFragment"
-        android:label="DashboardFragment"
+        android:label="@string/menu_main"
         tools:layout="@layout/fragment_dashboard">
         <action
             android:id="@+id/action_dashboardFragment_to_loginFragment"
@@ -36,7 +36,7 @@
     <fragment
         android:id="@+id/menuFragment"
         android:name="ru.skillbranch.sbdelivery.menu.view.MenuFragment"
-        android:label="MenuFragment"
+        android:label="@string/menu_menu"
         tools:layout="@layout/fragment_menu" />
 
     <fragment
@@ -99,5 +99,15 @@
         android:id="@+id/dishFragment"
         android:name="ru.skillbranch.sbdelivery.dish.view.DishFragment"
         android:label="DishFragment"
-        tools:layout="@layout/fragment_dish"/>
+        tools:layout="@layout/fragment_dish">
+        <action
+            android:id="@+id/action_dishFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/basketFragment"
+        android:name="ru.skillbranch.sbdelivery.basket.view.BasketFragment"
+        android:label="@string/menu_basket"
+        tools:layout="@layout/fragment_basket"/>
 </navigation>

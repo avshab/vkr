@@ -5,7 +5,7 @@ import dagger.Provides
 import ru.skillbranch.sbdelivery.dashboard.model.DashboardViewModel
 import ru.skillbranch.sbdelivery.dashboard.view.DashboardFragment
 import ru.skillbranch.sbdelivery.dashboard.view.builder.DashboardCellsBuilder
-import ru.skillbranch.sbdelivery.domain.auth.usecases.IsUserAuthorizedUseCase
+import ru.skillbranch.sbdelivery.domain.auth.usecases.IsUserAuthorizedSingleUseCase
 import ru.skillbranch.sbdelivery.domain.dashboard.usecases.GetDashboardModelUseCases
 import ru.skillbranch.sbdelivery.utils.resources.ResourcesManager
 import ru.skillbranch.sbdelivery.utils.rx.Schedulers
@@ -26,14 +26,14 @@ class DashboardModule {
         schedulers: Provider<Schedulers>,
         getDashboardModelUseCases: Provider<GetDashboardModelUseCases>,
         cellsBuilder: Provider<DashboardCellsBuilder>,
-        isUserAuthorizedUseCase: Provider<IsUserAuthorizedUseCase>
+        isUserAuthorizedSingleUseCase: Provider<IsUserAuthorizedSingleUseCase>
     ): DashboardViewModel {
         return fragment.createViewModel {
             DashboardViewModel(
                 schedulers = schedulers.get(),
                 getDashboardModelUseCases = getDashboardModelUseCases.get(),
                 cellsBuilder = cellsBuilder.get(),
-                isUserAuthorizedUseCase = isUserAuthorizedUseCase.get()
+                isUserAuthorizedSingleUseCase = isUserAuthorizedSingleUseCase.get()
             )
         }
     }

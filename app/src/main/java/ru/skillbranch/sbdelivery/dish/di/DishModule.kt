@@ -5,7 +5,8 @@ import dagger.Provides
 import ru.skillbranch.sbdelivery.dish.model.DishViewModel
 import ru.skillbranch.sbdelivery.dish.view.DishArgs
 import ru.skillbranch.sbdelivery.dish.view.DishFragment
-import ru.skillbranch.sbdelivery.dish.view.builder.DishReviewCellBuilder
+import ru.skillbranch.sbdelivery.dish.view.builder.DishCellBuilder
+import ru.skillbranch.sbdelivery.domain.auth.usecases.IsUserAuthorizedUseCase
 import ru.skillbranch.sbdelivery.domain.dish.usecases.GetReviewsForDishUseCase
 import ru.skillbranch.sbdelivery.domain.dish.usecases.SendReviewForDishUseCase
 import ru.skillbranch.sbdelivery.utils.extensions.getArgs
@@ -38,9 +39,10 @@ class DishModule {
         fragment: DishFragment,
         schedulers: Provider<Schedulers>,
         args: Provider<DishArgs>,
-        cellsBuilder: DishReviewCellBuilder,
+        cellsBuilder: DishCellBuilder,
         getReviewsForDishUseCase: GetReviewsForDishUseCase,
-        sendReviewForDishUseCase: SendReviewForDishUseCase
+        sendReviewForDishUseCase: SendReviewForDishUseCase,
+        isUserAuthorizedUseCase: IsUserAuthorizedUseCase
     ): DishViewModel {
         return fragment.createViewModel {
             val args = args.get()
@@ -55,7 +57,8 @@ class DishModule {
                 rating = args.dishModel.rating,
                 cellsBuilder = cellsBuilder,
                 getReviewsForDishUseCase = getReviewsForDishUseCase,
-                sendReviewForDishUseCase = sendReviewForDishUseCase
+                sendReviewForDishUseCase = sendReviewForDishUseCase,
+                isUserAuthorizedUseCase = isUserAuthorizedUseCase
             )
         }
     }
@@ -63,6 +66,6 @@ class DishModule {
     @Provides
     @DishScope
     fun provideDishReviewCellBuilder(resourcesManager: ResourcesManager) =
-        DishReviewCellBuilder(resourcesManager)
+        DishCellBuilder(resourcesManager)
 
 }

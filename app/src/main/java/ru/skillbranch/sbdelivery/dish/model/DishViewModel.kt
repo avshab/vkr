@@ -1,12 +1,15 @@
 package ru.skillbranch.sbdelivery.dish.model
 
+import androidx.lifecycle.MutableLiveData
 import io.reactivex.disposables.Disposable
 import ru.skillbranch.sbdelivery.common.viewModel.BaseViewModelWithState
 import ru.skillbranch.sbdelivery.common.viewModel.ViewModelState
-import ru.skillbranch.sbdelivery.dish.view.builder.DishReviewCellBuilder
+import ru.skillbranch.sbdelivery.dish.view.builder.DishCellBuilder
+import ru.skillbranch.sbdelivery.domain.auth.usecases.IsUserAuthorizedUseCase
 import ru.skillbranch.sbdelivery.domain.dish.model.DishReviewModel
 import ru.skillbranch.sbdelivery.domain.dish.usecases.GetReviewsForDishUseCase
 import ru.skillbranch.sbdelivery.domain.dish.usecases.SendReviewForDishUseCase
+import ru.skillbranch.sbdelivery.utils.livedata.asLiveData
 import ru.skillbranch.sbdelivery.utils.rx.Schedulers
 
 /**
@@ -22,13 +25,17 @@ class DishViewModel(
     private val oldPrice: Int?,
     private val url: String,
     private val rating: Double,
-    private val cellsBuilder: DishReviewCellBuilder,
+    private val cellsBuilder: DishCellBuilder,
     private val getReviewsForDishUseCase: GetReviewsForDishUseCase,
-    private val sendReviewForDishUseCase: SendReviewForDishUseCase
+    private val sendReviewForDishUseCase: SendReviewForDishUseCase,
+    private val isUserAuthorizedUseCase: IsUserAuthorizedUseCase
 ) : BaseViewModelWithState() {
 
     private var reviewDisposable: Disposable? = null
     private var addReviewDisposable: Disposable? = null
+
+    private val authStateDelegate = MutableLiveData<Boolean>()
+    val authStateLiveData = authStateDelegate.asLiveData
 
     init {
         loadData()
@@ -57,12 +64,19 @@ class DishViewModel(
                 oldPrice = oldPrice,
                 reviews = data,
                 url = url,
-                rating = rating.toString()
+                summaryRating = rating
             )
         )
     }
 
     override fun handleError(throwable: Throwable) {
+        val hh =      cellsBuilder.buildHeader(
+            title = title,
+            description = description,
+            price = price,
+            oldPrice = oldPrice,
+            url = url
+        )
         stateMutableLiveData.value = ViewModelState.Success(
             cellsBuilder.buildHeader(
                 title = title,
@@ -79,6 +93,10 @@ class DishViewModel(
     }
 
     fun addReview(rating: Int, text: String) {
+        if (!isUserAuthorizedUseCase.buildSingle()) {
+            authStateDelegate.value = false
+            return
+        }
         addReviewDisposable?.dispose()
         addReviewDisposable = sendReviewForDishUseCase
             .build(dishId, rating, text)

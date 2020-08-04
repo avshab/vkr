@@ -6,7 +6,7 @@ import io.reactivex.disposables.Disposable
 import ru.skillbranch.sbdelivery.common.viewModel.BaseViewModelWithState
 import ru.skillbranch.sbdelivery.common.viewModel.ViewModelState
 import ru.skillbranch.sbdelivery.dashboard.view.builder.DashboardCellsBuilder
-import ru.skillbranch.sbdelivery.domain.auth.usecases.IsUserAuthorizedUseCase
+import ru.skillbranch.sbdelivery.domain.auth.usecases.IsUserAuthorizedSingleUseCase
 import ru.skillbranch.sbdelivery.domain.dashboard.model.DashboardModel
 import ru.skillbranch.sbdelivery.domain.dashboard.usecases.GetDashboardModelUseCases
 import ru.skillbranch.sbdelivery.utils.livedata.asLiveData
@@ -18,7 +18,7 @@ import ru.skillbranch.sbdelivery.utils.rx.Schedulers
 
 class DashboardViewModel(
     private val schedulers: Schedulers,
-    isUserAuthorizedUseCase: IsUserAuthorizedUseCase,
+    isUserAuthorizedSingleUseCase: IsUserAuthorizedSingleUseCase,
     private val getDashboardModelUseCases: GetDashboardModelUseCases,
     private val cellsBuilder: DashboardCellsBuilder
 ) : BaseViewModelWithState() {
@@ -31,7 +31,7 @@ class DashboardViewModel(
 
     init {
         authDisposable?.dispose()
-        authDisposable = isUserAuthorizedUseCase.buildSingle().subscribeOn(schedulers.io())
+        authDisposable = isUserAuthorizedSingleUseCase.buildSingle().subscribeOn(schedulers.io())
             .observeOn(schedulers.ui()).subscribe(authStateDelegate::setValue).untilCleared()
         loadData()
     }

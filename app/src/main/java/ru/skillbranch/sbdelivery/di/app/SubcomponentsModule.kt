@@ -17,6 +17,9 @@ import ru.skillbranch.sbdelivery.auth.recovery.step3.view.RecoveryThirdStepFragm
 import ru.skillbranch.sbdelivery.auth.registration.di.RegistrationModule
 import ru.skillbranch.sbdelivery.auth.registration.di.RegistrationScope
 import ru.skillbranch.sbdelivery.auth.registration.view.RegistrationFragment
+import ru.skillbranch.sbdelivery.basket.di.BasketModule
+import ru.skillbranch.sbdelivery.basket.di.BasketScope
+import ru.skillbranch.sbdelivery.basket.view.BasketFragment
 import ru.skillbranch.sbdelivery.dashboard.di.DashboardModule
 import ru.skillbranch.sbdelivery.dashboard.di.DashboardScope
 import ru.skillbranch.sbdelivery.dashboard.view.DashboardFragment
@@ -79,4 +82,8 @@ abstract class SubcomponentsModule {
     @DishScope
     @ContributesAndroidInjector(modules = [DishModule::class])
     abstract fun buildDishFragment(): DishFragment
+
+    @BasketScope
+    @ContributesAndroidInjector(modules = [BasketModule::class])
+    abstract fun buildBasketFragment(): BasketFragment
 }

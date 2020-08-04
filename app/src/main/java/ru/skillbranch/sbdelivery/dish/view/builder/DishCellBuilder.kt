@@ -16,8 +16,9 @@ import ru.skillbranch.sbdelivery.utils.exceptions.RUB_SYMBOL
 import ru.skillbranch.sbdelivery.utils.exceptions.WHITESPACE
 import ru.skillbranch.sbdelivery.utils.extensions.setSpanExclusive
 import ru.skillbranch.sbdelivery.utils.resources.ResourcesManager
+import kotlin.math.roundToInt
 
-class DishReviewCellBuilder(
+class DishCellBuilder(
     private val resourcesManager: ResourcesManager
 ) {
 
@@ -27,9 +28,11 @@ class DishReviewCellBuilder(
         price: Int,
         oldPrice: Int?,
         url: String,
-        rating: String,
+        summaryRating: Double,
         reviews: List<DishReviewModel>
     ): List<BaseCell> {
+
+
         val reviewCells = reviews.map { review ->
             ReviewCell(
                 title = review.author + "," + WHITESPACE + DateTimeFormatter()
@@ -50,7 +53,9 @@ class DishReviewCellBuilder(
             )
         )
         if (reviewCells.isNotEmpty()) {
-            result = result + listOf(ReviewHeaderCell(rating))
+
+            val rating = (summaryRating * 100.0).roundToInt() / 100.0
+            result = result + listOf(ReviewHeaderCell(rating.toString()))
         }
         return result + reviewCells
     }

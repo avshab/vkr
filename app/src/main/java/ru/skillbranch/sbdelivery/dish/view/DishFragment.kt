@@ -4,12 +4,13 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_dish.*
 import ru.skillbranch.sbdelivery.common.view.BaseFragment
 import ru.skillbranch.sbdelivery.R
 import ru.skillbranch.sbdelivery.common.viewModel.ViewModelState
 import ru.skillbranch.sbdelivery.dish.model.DishViewModel
-import ru.skillbranch.sbdelivery.dish.view.adapter.DishReviewAdapter
+import ru.skillbranch.sbdelivery.dish.view.adapter.DishAdapter
 import ru.skillbranch.sbdelivery.utils.extensions.arguments
 import javax.inject.Inject
 
@@ -25,38 +26,48 @@ class DishFragment : BaseFragment(), ReviewDialogFragment.Callback {
 
     override val layoutResId: Int = R.layout.fragment_dish
 
-    override val toolbarVisibility: Boolean = false
-
     @Inject lateinit var viewModel: DishViewModel
 
     private val fragmentArgs by arguments<DishArgs>()
 
-    private lateinit var reviewAdapter: DishReviewAdapter
+    private lateinit var dishAdapter: DishAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        reviewAdapter = DishReviewAdapter(
+        dishAdapter = DishAdapter(
             addReview = ::showReviewDialog,
             addToBasket = ::addToBasket
         )
 
         reviewRecyclerView.apply {
-            adapter = reviewAdapter
+            adapter = adapter
             layoutManager = LinearLayoutManager(context)
         }
-        setupSecondToolBar(fragmentArgs.dishModel.name)
+
+        setToolbarTitle(fragmentArgs.dishModel.name)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
         viewModel.stateLiveData
             .observe(::handleState)
+
+        viewModel.authStateLiveData
+            .observe(::navigateToLogin)
+    }
+
+    private fun navigateToLogin(isAuth: Boolean) {
+        if (!isAuth) {
+            navController.navigate(R.id.action_dashboardFragment_to_loginFragment)
+        }
+      //  viewModel.removeAuthObserver()
     }
 
     private fun handleState(state: ViewModelState) {
         when (state) {
-            is ViewModelState.Success -> reviewAdapter.items = state.list
+            is ViewModelState.Success -> dishAdapter.items = state.list
 
         }
     }

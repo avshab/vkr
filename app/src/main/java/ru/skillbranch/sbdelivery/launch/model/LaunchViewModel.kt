@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import io.reactivex.Single
 import io.reactivex.disposables.Disposable
 import ru.skillbranch.sbdelivery.common.viewModel.BaseViewModel
-import ru.skillbranch.sbdelivery.domain.auth.usecases.IsUserAuthorizedUseCase
+import ru.skillbranch.sbdelivery.domain.auth.usecases.IsUserAuthorizedSingleUseCase
 import ru.skillbranch.sbdelivery.utils.livedata.asLiveData
 import ru.skillbranch.sbdelivery.utils.rx.Schedulers
 import java.util.concurrent.TimeUnit
@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit
 
 class LaunchViewModel(
     schedulers: Schedulers,
-    isUserAuthorizedUseCase: IsUserAuthorizedUseCase
+    isUserAuthorizedSingleUseCase: IsUserAuthorizedSingleUseCase
 ) : BaseViewModel() {
     //    private var authDisposable: Disposable? = null
 //

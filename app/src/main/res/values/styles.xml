@@ -20,12 +20,12 @@
         <item name="md_font_button">@font/roboto_medium</item>
     </style>
 
-    <style name="AppThemeSplash" parent="AppTheme">
-        <item name="android:background">@drawable/bg_launch_splash</item>
-    </style>
-
     <style name="AppThemeClear" parent="AppTheme">
         <item name="android:background">@null</item>
+    </style>
+
+    <style name="AppThemeSplash" parent="AppTheme">
+        <item name="android:background">@drawable/bg_launch_splash</item>
     </style>
 
     <style name="Toolbar">
@@ -41,13 +41,12 @@
         <item name="colorPrimary">@color/color_primary</item>
         <item name="colorOnPrimary">@color/white</item>
         <item name="colorSurface">@color/color_primary</item>
-        <item name="colorControlNormal">@color/white</item>
+        <item name="colorControlNormal">@color/color_accent</item>
         <item name="android:textColorHint">@color/color_primary</item>
         <item name="android:textColorPrimary">?attr/colorOnPrimary</item>
     </style>
 
     <style name="DeliveryToolbar" parent="Widget.MaterialComponents.Toolbar.Primary">
-        <item name="colorControlNormal">@color/color_accent</item>
         <item name="titleTextColor">?attr/colorOnPrimary</item>
         <item name="contentInsetStartWithNavigation">0dp</item>
         <item name="android:textColorSecondary">?attr/colorOnPrimary</item>
@@ -58,7 +57,7 @@
         <item name="android:theme">@style/DeliveryToolbarsTheme</item>
         <item name="titleTextAppearance">@style/ToolbarTextAppearance</item>
     </style>
-
+    
     <style name="ToolbarTextAppearance" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">#FFFFFF</item>

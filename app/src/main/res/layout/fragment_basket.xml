@@ -4,13 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black">
+    android:background="@color/color_on_surface">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/reviewRecyclerView"
+        android:id="@+id/basketRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#24222C"
         tools:listitem="@layout/cell_review_item" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

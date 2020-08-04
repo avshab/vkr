@@ -10,7 +10,7 @@ import ru.skillbranch.sbdelivery.dish.view.delegates.ReviewHeaderCellDelegate
  * Created by Anna Shabaeva on 16.07.2020
  */
 
-class DishReviewAdapter(
+class DishAdapter(
     private val addToBasket: (count: Int) -> Unit,
     private val addReview: () -> Unit
 ) : BaseCellDelegatcionAdapter(BaseDiffCallback()) {
