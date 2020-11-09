@@ -11,9 +11,6 @@ import ru.skillbranch.sbdelivery.utils.exceptions.defaultIfNull
 class MenuCellsBuilder() {
 
     fun build(data: List<CategoryModel>): List<BaseCell> {
-        val res = data.filter { it.active && it.parent == null }.map {
-            MenuCell(title = it.name, iconUrl = it.icon.defaultIfNull, children = listOf())
-        }
         return  data.filter { it.active && it.parent == null }.map {
             MenuCell(title = it.name, iconUrl = it.icon.defaultIfNull, children = listOf())
         }

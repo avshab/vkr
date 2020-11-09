@@ -7,11 +7,14 @@ import ru.skillbranch.sbdelivery.data.auth.storage.UserAuthStorage
 import ru.skillbranch.sbdelivery.data.auth.gateways.LoginGatewayImpl
 import ru.skillbranch.sbdelivery.data.auth.gateways.LogoutGatewayImpl
 import ru.skillbranch.sbdelivery.data.common.api.BaseResponseMapper
+import ru.skillbranch.sbdelivery.data.common.storage.DishesStorage
+import ru.skillbranch.sbdelivery.data.common.storage.MenuCategoriesStorage
 import ru.skillbranch.sbdelivery.data.common.userData.UserDataStorage
 import ru.skillbranch.sbdelivery.data.dashboard.api.DashboardApiService
 import ru.skillbranch.sbdelivery.data.dashboard.gateways.DashboardGatewayImpl
 import ru.skillbranch.sbdelivery.data.dish.api.DishApiService
 import ru.skillbranch.sbdelivery.data.dish.gateways.DishGatewayImpl
+import ru.skillbranch.sbdelivery.data.launch.gateways.LaunchGatewayImpl
 import ru.skillbranch.sbdelivery.data.menu.api.CategoriesApiService
 import ru.skillbranch.sbdelivery.data.menu.gateways.MenuGatewayImpl
 import ru.skillbranch.sbdelivery.data.profile.api.ProfileApiService
@@ -21,6 +24,7 @@ import ru.skillbranch.sbdelivery.domain.auth.gateway.LoginGateway
 import ru.skillbranch.sbdelivery.domain.auth.gateway.LogoutGateway
 import ru.skillbranch.sbdelivery.domain.dashboard.gateways.DashboardGateway
 import ru.skillbranch.sbdelivery.domain.dish.gateways.DishGateway
+import ru.skillbranch.sbdelivery.domain.launch.gateways.LaunchGateway
 import ru.skillbranch.sbdelivery.domain.menu.gateways.MenuGateway
 import ru.skillbranch.sbdelivery.domain.profile.gateways.ProfileGateway
 
@@ -91,6 +95,21 @@ class GatewayModule {
         mapper: BaseResponseMapper
     ): DishGateway = DishGatewayImpl(
         apiService = apiService,
+        mapper = mapper
+    )
+
+    @Provides
+    fun provideLaunchGateway(
+        dishApiService: DishApiService,
+        categoriesApiService: CategoriesApiService,
+        dishesStorage: DishesStorage,
+        menuCategoriesStorage: MenuCategoriesStorage,
+        mapper: BaseResponseMapper
+    ): LaunchGateway = LaunchGatewayImpl(
+        dishApiService = dishApiService,
+        categoriesApiService = categoriesApiService,
+        dishesStorage = dishesStorage,
+        menuCategoriesStorage = menuCategoriesStorage,
         mapper = mapper
     )
 }

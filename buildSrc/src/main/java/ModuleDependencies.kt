@@ -63,11 +63,15 @@ object LifeCycle {
     const val LIFECYCLE_EXTENSIONS = "android.arch.lifecycle:extensions:$VERSION"
 }
 
-object Glide {
-    private const val VERSION = "4.8.0"
+object Coil {
+    private const val VERSION = "1.0.0"
+    const val LIBRARY = "io.coil-kt:coil:$VERSION"
+    const val SVG = "io.coil-kt:coil-svg:$VERSION"
+}
 
-    const val LIBRARY = "com.github.bumptech.glide:glide:$VERSION"
-    const val COMPILER = "com.github.bumptech.glide:compiler:$VERSION"
+object Paging {
+    private const val VERSION = "2.1.2"
+    const val LIBRARY = "androidx.paging:paging-runtime:$VERSION"
 }
 
 /**

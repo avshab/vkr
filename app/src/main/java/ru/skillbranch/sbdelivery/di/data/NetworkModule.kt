@@ -124,7 +124,6 @@ class NetworkModule {
         return LoggingInterceptor.Builder()
             .loggable(true)
             .setLevel(Level.BODY)
-//            .setLevel(Level.HEADERS)
             .build()
     }
 

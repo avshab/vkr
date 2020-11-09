@@ -110,4 +110,9 @@
         android:name="ru.skillbranch.sbdelivery.basket.view.BasketFragment"
         android:label="@string/menu_basket"
         tools:layout="@layout/fragment_basket"/>
+
+    <fragment
+        android:id="@+id/categoryMenuFragment"
+        android:name="ru.skillbranch.sbdelivery.menuCategory.view.MenuCategoryFragment"
+        tools:layout="@layout/fragment_category_menu"/>
 </navigation>

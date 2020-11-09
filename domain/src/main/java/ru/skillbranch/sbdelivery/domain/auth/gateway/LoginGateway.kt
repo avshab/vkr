@@ -29,4 +29,6 @@ interface LoginGateway {
 
     fun recoveryThirdStep(email: String, code: String, password: String): Single<Any>
 
+    fun refreshUserAuth(): Single<String>
+
 }

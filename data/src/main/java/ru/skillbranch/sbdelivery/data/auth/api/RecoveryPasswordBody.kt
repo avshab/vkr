@@ -13,3 +13,4 @@ class RecoveryPasswordBody(
     @SerializedName("password")
     val password: String
 )
+

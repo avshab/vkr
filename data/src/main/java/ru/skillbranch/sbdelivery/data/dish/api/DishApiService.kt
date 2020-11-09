@@ -5,6 +5,7 @@ import io.reactivex.Completable
 import io.reactivex.Single
 import retrofit2.Response
 import retrofit2.http.*
+import ru.skillbranch.sbdelivery.domain.dashboard.model.DishModel
 import ru.skillbranch.sbdelivery.domain.dish.model.DishReviewModel
 
 /**
@@ -26,6 +27,11 @@ interface DishApiService {
         @Body body: DishReviewRequestBody
     ): Completable
 
+    @GET("dishes")
+    fun getDishes(
+        @Query("offset") offset: Long = 0,
+        @Query("limit") limit: Long = 10
+    ): Single<Response<List<DishModel>?>>
 }
 
 class DishReviewRequestBody(

@@ -8,6 +8,9 @@ import ru.skillbranch.sbdelivery.common.view.BaseFragment
 import ru.skillbranch.sbdelivery.R
 import ru.skillbranch.sbdelivery.common.viewModel.ViewModelState
 import ru.skillbranch.sbdelivery.menu.model.MenuViewModel
+import ru.skillbranch.sbdelivery.menuCategory.view.MenuCategoryArgs
+import ru.skillbranch.sbdelivery.menuCategory.view.MenuCategoryFragment
+import ru.skillbranch.sbdelivery.utils.extensions.toBundle
 import javax.inject.Inject
 
 /**
@@ -23,7 +26,9 @@ class MenuFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        menuAdapter = MenuAdapter()
+        menuAdapter = MenuAdapter(
+            categoryClick = ::goToCategoryFragment
+        )
         menuRecyclerView.apply {
             adapter = menuAdapter
             layoutManager = GridLayoutManager(context, 3)
@@ -43,5 +48,12 @@ class MenuFragment : BaseFragment() {
             is ViewModelState.Success -> menuAdapter.items = state.list
         }
 
+    }
+
+    private fun goToCategoryFragment(categoryId: String) {
+        navController.navigate(
+            R.id.categoryMenuFragment,
+            MenuCategoryArgs(categoryId).toBundle<MenuCategoryFragment>()
+        )
     }
 }

@@ -3,18 +3,15 @@ package ru.skillbranch.sbdelivery.data.auth.gateways
 import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Single
-import retrofit2.Response
 import ru.skillbranch.sbdelivery.data.auth.api.*
-import ru.skillbranch.sbdelivery.data.auth.model.LoginResultResponseBody
 import ru.skillbranch.sbdelivery.domain.auth.gateway.LoginGateway
 import ru.skillbranch.sbdelivery.domain.auth.model.AuthModel
 import ru.skillbranch.sbdelivery.data.auth.model.UserAuthDbDto
 import ru.skillbranch.sbdelivery.data.auth.storage.UserAuthStorage
-import ru.skillbranch.sbdelivery.data.common.api.BaseResponseMapper
 import ru.skillbranch.sbdelivery.data.common.userData.UserDataStorage
 import ru.skillbranch.sbdelivery.domain.auth.model.LoginModel
-import ru.skillbranch.sbdelivery.domain.dashboard.model.DishModel
 import ru.skillbranch.sbdelivery.domain.userData.model.UserDataModel
+import ru.skillbranch.sbdelivery.utils.exceptions.defaultIfNull
 
 /**
  * Created by Anna Shabaeva on 26.06.2020
@@ -162,20 +159,22 @@ class LoginGatewayImpl(
     }
 
 
-//    override fun refreshUserAuth(): Single<LoginModel> {
-//        return userAuthStorage
-//            .getSingle()
-//            .map { auth ->
-//                RefreshAuthRequestBody(
-//                    auth.accessToken,
-//                    auth.refreshToken
-//                )
-//            }
-//            .flatMap(authApiService::refreshAuth)
-//            .map(refreshAuthResponseMapper::map)
-//            .unwrapOptionalOrThrow()
-//            .doOnSuccess(::updateUserAuth)
-//    }
+    override fun refreshUserAuth(): Single<String>  {
+        return userAuthStorage
+            .getSingle()
+            .map { auth ->
+                RefreshAuthRequestBody(
+                    auth.refreshToken
+                )
+            }
+            .flatMap(authApiService::refresh)
+            .map{
+                val accessToken = it.body()?.accessToken.defaultIfNull
+                userAuthStorage.put(UserAuthDbDto(accessToken,
+                userAuthStorage.get().refreshToken ))
+                accessToken
+            }
+    }
 
 
 }

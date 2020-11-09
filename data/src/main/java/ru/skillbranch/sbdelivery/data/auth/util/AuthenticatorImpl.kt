@@ -6,7 +6,7 @@ import okhttp3.Request
 import okhttp3.Response
 import okhttp3.Route
 import ru.skillbranch.sbdelivery.domain.auth.gateway.LoginGateway
-import ru.skillbranch.sbdelivery.domain.auth.model.AuthModel
+import ru.skillbranch.sbdelivery.utils.exceptions.EMPTY_STRING
 
 /**
  * Created by Anna Shabaeva on 01.07.2020
@@ -28,28 +28,23 @@ class AuthenticatorImpl(
 
     @Synchronized
     override fun authenticate(route: Route?, response: Response): Request? {
-       // Timber.w { "Detected Authentication Error. Will attempt to refresh access token" }
-
         val attemptsMade = getPriorAttemptsCount(response)
 
         if (attemptsMade >= RETRY_COUNT) {
-//            Timber.w { "Unsuccessfully spent all attempts to re-authenticate User, give up." }
-//            Timber.w { "Navigating user to Login Screen." }
             forceLogoutAction()
             return null
         }
 
         //TODO add refresh
-        val newAuth = try {
-            AuthModel.EMPTY
-            //loginGateway.refreshUserAuth().blockingGet()
+        val newAccessToken = try {
+            loginGateway.refreshUserAuth().blockingGet()
         } catch (exc: Exception) {
             Log.e("--TAG", exc.message)
-            AuthModel.EMPTY
+            EMPTY_STRING
         }
 
-        return if (newAuth.isNotEmpty) {
-            rebuildRequest(response, newAuth.accessToken)
+        return if (!newAccessToken.isNullOrEmpty()) {
+            rebuildRequest(response, newAccessToken)
         } else {
             handleRefreshFailure(attemptsMade, response)
         }
@@ -62,13 +57,6 @@ class AuthenticatorImpl(
         attemptsMade: Int,
         response: Response
     ): Request {
-
-        val attemptsLeft = RETRY_COUNT - attemptsMade
-
-//        Timber.e { "Failed to re-authenticate user after getting 401 code" }
-//        Timber.w { "Attempts left: $attemptsLeft" }
-
-        // Return old request, because new User Authorization is not obtained.
         return response.request()
     }
 

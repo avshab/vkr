@@ -5,6 +5,7 @@ import io.reactivex.Single
 import io.reactivex.disposables.Disposable
 import ru.skillbranch.sbdelivery.common.viewModel.BaseViewModel
 import ru.skillbranch.sbdelivery.domain.auth.usecases.IsUserAuthorizedSingleUseCase
+import ru.skillbranch.sbdelivery.domain.launch.usecases.LaunchUseCases
 import ru.skillbranch.sbdelivery.utils.livedata.asLiveData
 import ru.skillbranch.sbdelivery.utils.rx.Schedulers
 import java.util.concurrent.TimeUnit
@@ -15,7 +16,8 @@ import java.util.concurrent.TimeUnit
 
 class LaunchViewModel(
     schedulers: Schedulers,
-    isUserAuthorizedSingleUseCase: IsUserAuthorizedSingleUseCase
+    isUserAuthorizedSingleUseCase: IsUserAuthorizedSingleUseCase,
+    launchUseCases: LaunchUseCases
 ) : BaseViewModel() {
     //    private var authDisposable: Disposable? = null
 //
@@ -24,16 +26,23 @@ class LaunchViewModel(
     private var disposable: Disposable? = null
 
     init {
+//        disposable?.dispose()
+//        disposable =
+//            Single
+//                .timer(3L, TimeUnit.SECONDS)
+//                .subscribeOn(schedulers.io())
+//                .observeOn(schedulers.ui())
+//                .map { true }
+//                .subscribe(stateDelegate::setValue)
+//                .untilCleared()
+
         disposable?.dispose()
-        disposable =
-            Single
-                .timer(3L, TimeUnit.SECONDS)
+        disposable = launchUseCases.buildSingle()
                 .subscribeOn(schedulers.io())
                 .observeOn(schedulers.ui())
                 .map { true }
                 .subscribe(stateDelegate::setValue)
                 .untilCleared()
-
 //        authDisposable?.dispose()
 //        authDisposable = isUserAuthorizedUseCase.buildSingle().subscribeOn(schedulers.io())
 //            .observeOn(schedulers.ui()).subscribe(authStateDelegate::setValue).untilCleared()

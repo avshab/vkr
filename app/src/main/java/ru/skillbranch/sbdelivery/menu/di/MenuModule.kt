@@ -36,7 +36,5 @@ class MenuModule {
 
     @Provides
     @MenuScope
-    fun provideMenuCellsBuilder(
-
-    ) = MenuCellsBuilder()
+    fun provideMenuCellsBuilder() = MenuCellsBuilder()
 }

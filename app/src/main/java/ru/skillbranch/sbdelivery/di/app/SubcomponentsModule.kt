@@ -35,6 +35,9 @@ import ru.skillbranch.sbdelivery.main.di.MainScope
 import ru.skillbranch.sbdelivery.menu.di.MenuModule
 import ru.skillbranch.sbdelivery.menu.di.MenuScope
 import ru.skillbranch.sbdelivery.menu.view.MenuFragment
+import ru.skillbranch.sbdelivery.menuCategory.di.MenuCategoryModule
+import ru.skillbranch.sbdelivery.menuCategory.di.MenuCategoryScope
+import ru.skillbranch.sbdelivery.menuCategory.view.MenuCategoryFragment
 
 /**
  * Created by Anna Shabaeva on 06.06.2020
@@ -86,4 +89,8 @@ abstract class SubcomponentsModule {
     @BasketScope
     @ContributesAndroidInjector(modules = [BasketModule::class])
     abstract fun buildBasketFragment(): BasketFragment
+
+    @MenuCategoryScope
+    @ContributesAndroidInjector(modules = [MenuCategoryModule::class])
+    abstract fun buildMenuCategoryFragment(): MenuCategoryFragment
 }

@@ -6,13 +6,15 @@ import ru.skillbranch.sbdelivery.common.view.adapter.diff.BaseDiffCallback
 /**
  * Created by Anna Shabaeva on 24.06.2020
  */
-class MenuAdapter : BaseCellDelegatcionAdapter(
+class MenuAdapter(
+    categoryClick: (id: String) -> Unit
+) : BaseCellDelegatcionAdapter(
     BaseDiffCallback()
 ) {
 
     init {
         with(delegatesManager) {
-            addDelegate(MenuCellDelegate())
+            addDelegate(MenuCellDelegate(categoryClick))
         }
     }
 

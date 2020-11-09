@@ -1,16 +1,16 @@
 package ru.skillbranch.sbdelivery.dashboard.view.delegates
 
-import kotlinx.android.synthetic.main.cell_dish_card.view.*
+import coil.load
 import ru.skillbranch.sbdelivery.common.view.adapter.delegates.BaseCellDelegate
 import ru.skillbranch.sbdelivery.common.view.adapter.viewholders.BaseCellViewHolder
 import ru.skillbranch.sbdelivery.dashboard.view.cells.DishCardCell
 import ru.skillbranch.sbdelivery.utils.exceptions.RUB_SYMBOL
 import ru.skillbranch.sbdelivery.utils.exceptions.WHITESPACE
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.load.resource.bitmap.CenterCrop
-import com.bumptech.glide.load.resource.bitmap.DownsampleStrategy
-import com.bumptech.glide.request.RequestOptions
+import kotlinx.android.synthetic.main.cell_dish_card.view.badgeTextView
+import kotlinx.android.synthetic.main.cell_dish_card.view.dishImageView
+import kotlinx.android.synthetic.main.cell_dish_card.view.likeButton
+import kotlinx.android.synthetic.main.cell_dish_card.view.nameTextView
+import kotlinx.android.synthetic.main.cell_dish_card.view.priceTextView
 import ru.skillbranch.sbdelivery.R
 import ru.skillbranch.sbdelivery.domain.dashboard.model.DishModel
 import ru.skillbranch.sbdelivery.utils.extensions.getColorInt
@@ -42,17 +42,10 @@ class DishCardCellDelegate(
             priceTextView.text = cell.data.price.toString() + WHITESPACE + RUB_SYMBOL
 
 
-            Glide
-                .with(dishImageView.context)
-                .load(cell.data.image)
-                .apply(
-                    RequestOptions
-                        .bitmapTransform(CenterCrop())
-                        .downsample(DownsampleStrategy.AT_LEAST)
-                        .error(R.drawable.ic_error_unspecified)
-                        .diskCacheStrategy(DiskCacheStrategy.ALL)
-                )
-                .into(dishImageView)
+            dishImageView.load(cell.data.image) {
+                crossfade(true)
+                placeholder(R.drawable.ic_error_unspecified)
+            }
 
             if(cell.like) {
                 likeButton.setColorFilter(likeButton.getColorInt(R.color.color_second_accent))

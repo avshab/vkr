@@ -11,3 +11,4 @@ class LoginResultResponseBody(
     val accessToken: String,
     val refreshToken: String
 )
+

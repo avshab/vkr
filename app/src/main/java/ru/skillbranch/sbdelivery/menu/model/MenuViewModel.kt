@@ -20,6 +20,8 @@ class MenuViewModel(
 
     private var dataDisposable: Disposable? = null
 
+    private var categoriesData = emptyList<CategoryModel>()
+
     init {
         loadData()
     }
@@ -40,6 +42,9 @@ class MenuViewModel(
     }
 
     private fun handleResult(data: List<CategoryModel>) {
+        categoriesData = data
         stateMutableLiveData.value = ViewModelState.Success(builder.build(data))
     }
+
+    fun getSubCategories(parentId: String) = categoriesData.filter { it.parent == parentId }
 }
